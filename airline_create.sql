@@ -20,10 +20,10 @@ CREATE TABLE FLIGHT_LEG (
 	Scheduled_departure_time DATETIME NOT NULL,
 	Arrival_airport_code INT NOT NULL,
 	Scheduled_arrival_time DATETIME NOT NULL,
-	CONSTRAINT PK_flight_leg PRIMARY KEY (Flight_no,Leg_number),
-	CONSTRAINT FK_flight_no FOREIGN KEY (Flight_no) REFERENCES FLIGHT(Flight_number),
-	CONSTRAINT FK_departure_airport_code FOREIGN KEY (Departure_airport_code) REFERENCES AIRPORT(Airport_code),
-	CONSTRAINT FK_arrival_airport_code FOREIGN KEY (Arrival_airport_code) REFERENCES AIRPORT(Airport_code)
+	CONSTRAINT PK_flight_leg3 PRIMARY KEY (Flight_no,Leg_number),
+	CONSTRAINT FK_flight_no3 FOREIGN KEY (Flight_no) REFERENCES FLIGHT(Flight_number),
+	CONSTRAINT FK_departure_airport_code3 FOREIGN KEY (Departure_airport_code) REFERENCES AIRPORT(Airport_code),
+	CONSTRAINT FK_arrival_airport_code3 FOREIGN KEY (Arrival_airport_code) REFERENCES AIRPORT(Airport_code)
 );
 
 CREATE TABLE FARE (
@@ -32,7 +32,7 @@ CREATE TABLE FARE (
 	Amount INT NOT NULL,
 	Restrictions VARCHAR(255),
 	CONSTRAINT PK_fare PRIMARY KEY (Flight_no, Fare_code),
-	CONSTRAINT FK_flight_no FOREIGN KEY (Flight_no) REFERENCES FLIGHT(Flight_number)
+	CONSTRAINT FK_flight_no4 FOREIGN KEY (Flight_no) REFERENCES FLIGHT(Flight_number)
 );
 
 CREATE TABLE AIRPLANE_TYPE (
@@ -47,7 +47,7 @@ CREATE TABLE AIRPLANE (
 	Total_number_of_seats INT NOT NULL,
 	Airplane_type VARCHAR(255) NOT NULL,
 	CONSTRAINT PK_airplane PRIMARY KEY (Airplane_id),
-	CONSTRAINT FK_airplane_type FOREIGN KEY (Airplane_type) REFERENCES AIRPLANE_TYPE(Airplane_type_name)
+	CONSTRAINT FK_airplane_type6 FOREIGN KEY (Airplane_type) REFERENCES AIRPLANE_TYPE(Airplane_type_name)
 );
 
 CREATE TABLE LEG_INSTANCE (
@@ -61,18 +61,18 @@ CREATE TABLE LEG_INSTANCE (
 	Arrival_airport_code INT NOT NULL,
 	Arrival_time DATETIME NOT NULL,
 	CONSTRAINT PK_leg_instance PRIMARY KEY (Flight_no, Leg_no, [Date]),
-	CONSTRAINT FK_flight_leg FOREIGN KEY (Flight_no, Leg_no) REFERENCES FLIGHT_LEG(Flight_number, Leg_number),
-	CONSTRAINT FK_airplane_id FOREIGN KEY (Airplane_id) REFERENCES AIRPLANE(Airplane_id),
-	CONSTRAINT FK_departure_airport_code FOREIGN KEY (Departure_airport_code) REFERENCES AIRPORT(Airport_code),
-	CONSTRAINT FK_arrival_airport_code FOREIGN KEY (Arrival_airport_code) REFERENCES AIRPORT(Airport_code)
+	CONSTRAINT FK_flight_leg7 FOREIGN KEY (Flight_no, Leg_no) REFERENCES FLIGHT_LEG(Flight_number, Leg_number),
+	CONSTRAINT FK_airplane_id7 FOREIGN KEY (Airplane_id) REFERENCES AIRPLANE(Airplane_id),
+	CONSTRAINT FK_departure_airport_code7 FOREIGN KEY (Departure_airport_code) REFERENCES AIRPORT(Airport_code),
+	CONSTRAINT FK_arrival_airport_code7 FOREIGN KEY (Arrival_airport_code) REFERENCES AIRPORT(Airport_code)
 );
 
 CREATE TABLE CAN_LAND (
 	Airplane_type_name VARCHAR(255) NOT NULL,
 	Airport_code INT NOT NULL,
 	CONSTRAINT PK_can_land PRIMARY KEY (Airplane_type_name, Airport_code),
-	CONSTRAINT FK_airplane_type_name FOREIGN KEY (Airplane_type_name) REFERENCES AIRPLANE_TYPE(Airplane_type_name),
-	CONSTRAINT FK_airport_code FOREIGN KEY (Airport_code) REFERENCES AIRPORT(Airport_code)
+	CONSTRAINT FK_airplane_type_name8 FOREIGN KEY (Airplane_type_name) REFERENCES AIRPLANE_TYPE(Airplane_type_name),
+	CONSTRAINT FK_airport_code8 FOREIGN KEY (Airport_code) REFERENCES AIRPORT(Airport_code)
 )
 
 CREATE TABLE SEAT_RESERVATION (
@@ -83,5 +83,5 @@ CREATE TABLE SEAT_RESERVATION (
 	Customer_name VARCHAR(255) NOT NULL,
 	Customer_phone VARCHAR(255) NOT NULL,
 	CONSTRAINT PK_seat_reservation PRIMARY KEY (Flight_no, Leg_no, [Date], Seat_number),
-	CONSTRAINT FK_fno_lno_date FOREIGN KEY (Flight_no, Leg_no, [Date]) REFERENCES LEG_INSTANCE(Flight_no, Leg_no, [Date])
+	CONSTRAINT FK_fno_lno_date9 FOREIGN KEY (Flight_no, Leg_no, [Date]) REFERENCES LEG_INSTANCE(Flight_no, Leg_no, [Date])
 );
