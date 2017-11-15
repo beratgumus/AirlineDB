@@ -61,7 +61,7 @@ CREATE TABLE LEG_INSTANCE (
 	[Arrival_airport_code] INT NOT NULL,
 	[Arrival_time] DATETIME NOT NULL,
 	CONSTRAINT PK_leg_instance PRIMARY KEY (Flight_no, Leg_no, [Date]),
-	CONSTRAINT FK_flight_leg7 FOREIGN KEY (Flight_no, Leg_no) REFERENCES FLIGHT_LEG(Flight_number, Leg_number),
+	CONSTRAINT FK_flight_leg7 FOREIGN KEY (Flight_no, Leg_no) REFERENCES FLIGHT_LEG(Flight_no, Leg_number),
 	CONSTRAINT FK_airplane_id7 FOREIGN KEY (Airplane_id) REFERENCES AIRPLANE(Airplane_id),
 	CONSTRAINT FK_departure_airport_code7 FOREIGN KEY (Departure_airport_code) REFERENCES AIRPORT(Airport_code),
 	CONSTRAINT FK_arrival_airport_code7 FOREIGN KEY (Arrival_airport_code) REFERENCES AIRPORT(Airport_code)
