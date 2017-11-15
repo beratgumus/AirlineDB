@@ -30,9 +30,9 @@ CREATE TABLE FLIGHT_LEG (
 	[Flight_no] INT NOT NULL,
 	[Leg_number] INT NOT NULL,
 	[Departure_airport_code] INT NOT NULL,
-	[Scheduled_departure_time] TIME NOT NULL,
+	[Scheduled_departure_time] TIME(0) NOT NULL,
 	[Arrival_airport_code] INT NOT NULL,
-	[Scheduled_arrival_time] TIME NOT NULL,
+	[Scheduled_arrival_time] TIME(0) NOT NULL,
 	CONSTRAINT PK_flight_leg3 PRIMARY KEY (Flight_no,Leg_number),
 	CONSTRAINT FK_flight_no3 FOREIGN KEY (Flight_no) REFERENCES FLIGHT(Flight_number),
 	CONSTRAINT FK_departure_airport_code3 FOREIGN KEY (Departure_airport_code) REFERENCES AIRPORT(Airport_code),
@@ -56,7 +56,7 @@ CREATE TABLE AIRPLANE_TYPE (
 );
 
 CREATE TABLE AIRPLANE (
-	[Airplane_id]  INT NOT NULL,
+	[Airplane_id] INT NOT NULL,
 	[Total_number_of_seats] INT NOT NULL,
 	[Airplane_type] NVARCHAR(255) NOT NULL,
 	CONSTRAINT PK_airplane PRIMARY KEY (Airplane_id),
