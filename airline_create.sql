@@ -1,3 +1,14 @@
+IF db_id('Airline1') IS NOT NULL 
+    DROP DATABASE Airline1
+
+GO
+
+CREATE DATABASE Airline1
+
+GO
+
+USE Airline1
+
 CREATE TABLE AIRPORT (
 	[Airport_code] INT NOT NULL,
 	[Name] NVARCHAR(255) NOT NULL,
