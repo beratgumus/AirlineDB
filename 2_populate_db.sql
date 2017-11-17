@@ -6,7 +6,7 @@ VALUES
 
 INSERT INTO FLIGHT (Flight_number, Airline, Weekdays) 
 VALUES 
-(1, 'Türk Hava Yolları', '1-1-1-1-1-0-0');
+(1, 'Türk Hava Yolları', '1,2,3,4,5');
 
 
 INSERT INTO FLIGHT_LEG (Flight_no, Leg_number, Departure_airport_code, Scheduled_departure_time,
