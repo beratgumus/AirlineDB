@@ -1,4 +1,5 @@
-﻿INSERT INTO AIRPORT (Airport_code, Name, City, State) 
+﻿USE Airline1
+INSERT INTO AIRPORT (Airport_code, Name, City, State) 
 VALUES 
 ('ADB', 'Adnan Menderes Havalimanı', 'İzmir', 'Türkiye'),
 ('IST', 'Atatürk Havalimanı', 'İstanbul', 'Türkiye'),
