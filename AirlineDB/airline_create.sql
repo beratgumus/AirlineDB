@@ -1,4 +1,4 @@
-IF db_id('Airline1') IS NOT NULL
+﻿IF db_id('Airline1') IS NOT NULL
 	USE master;
 	GO
 	ALTER DATABASE Airline1 SET SINGLE_USER WITH ROLLBACK IMMEDIATE;
