@@ -46,16 +46,24 @@ VALUES
 ('Airbus A320-200', 153, 'Airbus S.A.S'),
 ('Airbus A321-200', 188, 'Airbus S.A.S'),
 ('Airbus A330-200', 250, 'Airbus S.A.S'),
+('Airbus A380', 850, 'Airbus S.A.S'),
 ('Boeing 737-800', 165, 'Boeing'),
-('Boeing 737-900ER', 151, 'Boeing');
+('Boeing 737-900ER', 151, 'Boeing'),
+('Bombardier CRJ700' 70, 'Bombardier');
 
 INSERT INTO AIRPLANE (Airplane_id, Total_number_of_seats, Airplane_type)
 VALUES
 (1, 150, 'Airbus A320-200'),
 (2, 188, 'Airbus A321-200'),
-(3, 179, 'Airbus A320-200'),
+(3, 179, 'Airbus A321-200'),
 (4, 165, 'Boeing 737-800'),
-(5, 245, 'Airbus A330-200');
+(5, 245, 'Airbus A330-200'),
+(6, 165, 'Boeing 737-800'),
+(7, 151, 'Boeing 737-900ER'),
+(8, 149, 'Boeing 737-900ER'),
+(9, 153, 'Airbus A320-200'),
+(10, 250, 'Airbus A330-200');
+
 
 INSERT INTO CAN_LAND (Airplane_type_name, Airport_code)
 VALUES
@@ -79,7 +87,14 @@ VALUES
 ('Boeing 737-900ER', 'IST'), -- Boeing 737-900ER
 ('Boeing 737-900ER', 'ESB'),
 ('Boeing 737-900ER', 'NRT'),
-('Boeing 737-900ER', 'YXU');
+('Boeing 737-900ER', 'YXU'),
+('Bombardier CRJ700', 'ADB'), -- Bombardier CRJ700 | tüm havaalanları
+('Bombardier CRJ700', 'IST'),
+('Bombardier CRJ700', 'ESB'),
+('Bombardier CRJ700', 'NRT'),
+('Bombardier CRJ700', 'YXU'),
+('Airbus A380', 'NRT'), -- Airbus A380 | sadece yurt dışı
+('Airbus A380', 'YXU');
 
 INSERT INTO LEG_INSTANCE(Flight_no,Leg_no,Date,Number_of_available_seats,Airplane_id,Departure_airport_code,
 	Departure_time,Arrival_airport_code,Arrival_time)
