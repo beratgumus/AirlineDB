@@ -8,6 +8,7 @@
 5) Koltuk rezervasyonu yapıldıgı zaman,Leg Instance ta bulunan number of available seats sahasının degerını azalt
 6) Seat Reservation yapmadan önce available seatsin 0 dan büyük olup olmadıgını kontrol et
 7) Aktarmalı uçuşlar arasında, önceki uçuşun iniş tarihi ve saatinden önce diğer aktarmalı uçak kalkış yapmamalı
+8) AIRPLANE tablosundaki Total_number_of_seats AIRPLANE_TYPE tablosundaki Max_seats den büyük olmamalı
 
 ## SELECT
 
