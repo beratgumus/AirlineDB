@@ -55,3 +55,27 @@ VALUES
 (2, 188, 'Airbus A321-200'),
 (3, 179, 'Airbus A321-200'),
 (4, 165, 'Boeing 737-800');
+
+INSERT INTO CAN_LAND (Airplane_type_name, Airport_code)
+VALUES
+('Airbus A320-200', 'ADB'), -- Airbus A320-200
+('Airbus A320-200', 'IST'),
+('Airbus A320-200', 'ESB'),
+('Airbus A321-200', 'ADB'), -- Airbus A321-200 | tüm havaalanları
+('Airbus A321-200', 'IST'),
+('Airbus A321-200', 'ESB'),
+('Airbus A321-200', 'NRT'),
+('Airbus A321-200', 'YXU'),
+('Airbus A330-200', 'ADB'), -- Airbus A330-200
+('Airbus A330-200', 'IST'),
+('Airbus A330-200', 'NRT'),
+('Airbus A330-200', 'YXU'),
+('Boeing 737-800', 'ADB'), -- Boeing 737-800 | tüm havaalanları
+('Boeing 737-800', 'IST'),
+('Boeing 737-800', 'ESB'),
+('Boeing 737-800', 'NRT'),
+('Boeing 737-800', 'YXU'),
+('Boeing 737-900ER', 'IST'), -- Boeing 737-900ER
+('Boeing 737-900ER', 'ESB'),
+('Boeing 737-900ER', 'NRT'),
+('Boeing 737-900ER', 'YXU');
