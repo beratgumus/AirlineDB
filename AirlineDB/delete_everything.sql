@@ -8,6 +8,8 @@
 -- This script cleans all views, SPS, functions PKs, FKs and tables.
 -- Taken from https://stackoverflow.com/a/1473313/7822421
 
+USE Airline1
+
 DECLARE @name VARCHAR(128)
 DECLARE @SQL VARCHAR(254)
 

@@ -49,7 +49,7 @@ VALUES
 ('Airbus A380', 850, 'Airbus S.A.S'),
 ('Boeing 737-800', 165, 'Boeing'),
 ('Boeing 737-900ER', 151, 'Boeing'),
-('Bombardier CRJ700' 70, 'Bombardier');
+('Bombardier CRJ700', 70, 'Bombardier');
 
 INSERT INTO AIRPLANE (Airplane_id, Total_number_of_seats, Airplane_type)
 VALUES
