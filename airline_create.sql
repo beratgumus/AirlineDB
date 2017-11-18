@@ -12,7 +12,7 @@ GO
 USE Airline1
 
 CREATE TABLE AIRPORT (
-	[Airport_code] INT NOT NULL,
+	[Airport_code] CHAR(3) NOT NULL,
 	[Name] NVARCHAR(255) NOT NULL,
 	[City] NVARCHAR(255) NOT NULL,
 	[State] NVARCHAR(255) NOT NULL,
@@ -29,9 +29,9 @@ CREATE TABLE FLIGHT (
 CREATE TABLE FLIGHT_LEG (
 	[Flight_no] INT NOT NULL,
 	[Leg_number] INT NOT NULL,
-	[Departure_airport_code] INT NOT NULL,
+	[Departure_airport_code] CHAR(3) NOT NULL,
 	[Scheduled_departure_time] TIME(0) NOT NULL,
-	[Arrival_airport_code] INT NOT NULL,
+	[Arrival_airport_code] CHAR(3) NOT NULL,
 	[Scheduled_arrival_time] TIME(0) NOT NULL,
 	CONSTRAINT PK_flight_leg3 PRIMARY KEY (Flight_no,Leg_number),
 	CONSTRAINT FK_flight_no3 FOREIGN KEY (Flight_no) REFERENCES FLIGHT(Flight_number),
@@ -69,9 +69,9 @@ CREATE TABLE LEG_INSTANCE (
 	[Date] DATE NOT NULL,
 	[Number_of_available_seats] INT NOT NULL,
 	[Airplane_id] INT NOT NULL,
-	[Departure_airport_code] INT NOT NULL,
+	[Departure_airport_code] CHAR(3) NOT NULL,
 	[Departure_time] DATETIME NOT NULL,
-	[Arrival_airport_code] INT NOT NULL,
+	[Arrival_airport_code] CHAR(3) NOT NULL,
 	[Arrival_time] DATETIME NOT NULL,
 	CONSTRAINT PK_leg_instance PRIMARY KEY (Flight_no, Leg_no, [Date]),
 	CONSTRAINT FK_flight_leg7 FOREIGN KEY (Flight_no, Leg_no) REFERENCES FLIGHT_LEG(Flight_no, Leg_number),
@@ -82,7 +82,7 @@ CREATE TABLE LEG_INSTANCE (
 
 CREATE TABLE CAN_LAND (
 	[Airplane_type_name] NVARCHAR(255) NOT NULL,
-	[Airport_code] INT NOT NULL,
+	[Airport_code] CHAR(3) NOT NULL,
 	CONSTRAINT PK_can_land PRIMARY KEY (Airplane_type_name, Airport_code),
 	CONSTRAINT FK_airplane_type_name8 FOREIGN KEY (Airplane_type_name) REFERENCES AIRPLANE_TYPE(Airplane_type_name),
 	CONSTRAINT FK_airport_code8 FOREIGN KEY (Airport_code) REFERENCES AIRPORT(Airport_code)
