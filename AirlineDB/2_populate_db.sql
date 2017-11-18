@@ -27,7 +27,6 @@ VALUES
 (5, 1, 'ADB', '21:50', 'IST', '23:05'), -- izmir -> tokyo part1
 (5, 2, 'IST', '02:10', 'NRT', '19:50'); -- izmir -> tokyo part2
 
-
 INSERT INTO FARE (Flight_no, Fare_code, Amount, Restrictions)
 VALUES
 (1, 1, 75, NULL),
@@ -80,3 +79,12 @@ VALUES
 ('Boeing 737-900ER', 'ESB'),
 ('Boeing 737-900ER', 'NRT'),
 ('Boeing 737-900ER', 'YXU');
+
+INSERT INTO LEG_INSTANCE(Flight_no,Leg_no,Date,Number_of_available_seats,Airplane_id,Departure_airport_code,
+	Departure_time,Arrival_airport_code,Arrival_time)
+VALUES
+(1,1,'2017-11-13',145,1,'ADB','2017-11-13 21:53','IST','2017-11-13 23:04'), -- Planlanan havada kalma suresinden daha az surede ucusu tamamladi, -4 dk
+(1,1,'2017-11-14',147,1,'ADB','2017-11-14 21:50','IST','2017-11-14 23:05'), -- Rotarsiz, tam zamanlama
+(1,1,'2017-11-15',162,4,'ADB','2017-11-15 22:22','IST','2017-11-15 23:34'), -- 32 dk Rotarli
+(2,1,'2017-11-13',150,1,'ADB','2017-11-13 10:51','IST','2017-11-13 12:20'), -- Planlanan havada kalma suresinden daha fazla surede ucusu tamamladi, +9 dk
+(2,1,'2017-11-15',161,4,'ADB','2017-11-15 10:50','IST','2017-11-15 12:10');
