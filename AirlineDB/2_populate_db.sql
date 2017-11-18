@@ -53,8 +53,9 @@ INSERT INTO AIRPLANE (Airplane_id, Total_number_of_seats, Airplane_type)
 VALUES
 (1, 150, 'Airbus A320-200'),
 (2, 188, 'Airbus A321-200'),
-(3, 179, 'Airbus A321-200'),
-(4, 165, 'Boeing 737-800');
+(3, 179, 'Airbus A320-200'),
+(4, 165, 'Boeing 737-800'),
+(5, 245, 'Airbus A330-200');
 
 INSERT INTO CAN_LAND (Airplane_type_name, Airport_code)
 VALUES
@@ -83,8 +84,15 @@ VALUES
 INSERT INTO LEG_INSTANCE(Flight_no,Leg_no,Date,Number_of_available_seats,Airplane_id,Departure_airport_code,
 	Departure_time,Arrival_airport_code,Arrival_time)
 VALUES
-(1,1,'2017-11-13',145,1,'ADB','2017-11-13 21:53','IST','2017-11-13 23:04'), -- Planlanan havada kalma suresinden daha az surede ucusu tamamladi, -4 dk
-(1,1,'2017-11-14',147,1,'ADB','2017-11-14 21:50','IST','2017-11-14 23:05'), -- Rotarsiz, tam zamanlama
-(1,1,'2017-11-15',162,4,'ADB','2017-11-15 22:22','IST','2017-11-15 23:34'), -- 32 dk Rotarli
-(2,1,'2017-11-13',150,1,'ADB','2017-11-13 10:51','IST','2017-11-13 12:20'), -- Planlanan havada kalma suresinden daha fazla surede ucusu tamamladi, +9 dk
-(2,1,'2017-11-15',161,4,'ADB','2017-11-15 10:50','IST','2017-11-15 12:10');
+(1,1,'2017-11-13',15,1,'ADB','2017-11-13 21:53','IST','2017-11-13 23:04'), -- Planlanan havada kalma suresinden daha az surede ucusu tamamladi, -4 dk
+(1,1,'2017-11-14',17,1,'ADB','2017-11-14 21:50','IST','2017-11-14 23:05'), -- Rotarsiz, tam zamanlama
+(1,1,'2017-11-15',22,4,'ADB','2017-11-15 22:22','IST','2017-11-15 23:34'), -- 32 dk Rotarli
+(2,1,'2017-11-13',14,1,'ADB','2017-11-13 10:51','IST','2017-11-13 12:20'), -- Planlanan havada kalma suresinden daha fazla surede ucusu tamamladi, +9 dk
+(2,1,'2017-11-15',100,4,'ADB','2017-11-15 10:50','IST','2017-11-15 12:10'),  -- Doluluk orani %50 den az
+(3,1,'2017-11-14',6,3,'IST','2017-11-14 12:15','ADB','2017-11-14 13:00'),
+(3,1,'2017-11-15',7,4,'IST','2017-11-15 12:18','ADB','2017-11-15 13:07'),
+(4,1,'2017-11-13',11,5,'IST','2017-11-13 02:28','NRT','2017-11-13 20:10'), -- Uluslar arasi ucus
+(4,1,'2017-11-17',6,5,'IST','2017-11-17 02:17','NRT','2017-11-17 19:58'),
+(5,1,'2017-11-17',6,5,'ADB','2017-11-17 21:50','IST','2017-11-17 23:05'),  -- izmir -> tokyo part1
+(5,2,'2017-11-18',13,5,'IST','2017-11-18 02:19','NRT','2017-11-18 19:59'); -- izmir -> tokyo part2, +1
+
