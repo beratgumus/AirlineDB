@@ -16,14 +16,16 @@ CREATE TABLE AIRPORT (
 	[Name] NVARCHAR(255) NOT NULL,
 	[City] NVARCHAR(255) NOT NULL,
 	[State] NVARCHAR(255) NOT NULL,
-	CONSTRAINT PK_airport PRIMARY KEY (Airport_code)
+	CONSTRAINT PK_airport PRIMARY KEY (Airport_code),
+	CONSTRAINT CHK_airport_code CHECK(Airport_code LIKE '[A-Z][A-Z][A-Z]')
 );
 
 CREATE TABLE FLIGHT (
 	[Flight_number] INT NOT NULL,
 	[Airline] NVARCHAR(255) NOT NULL,
 	[Weekdays] NVARCHAR(255) NOT NULL,
-	CONSTRAINT PK_flight PRIMARY KEY (Flight_number)
+	CONSTRAINT PK_flight PRIMARY KEY (Flight_number),
+	CONSTRAINT CHK_weekdays CHECK(Weekdays LIKE '[0-7,]%')
 );
 
 CREATE TABLE FLIGHT_LEG (
@@ -45,7 +47,8 @@ CREATE TABLE FARE (
 	[Amount] INT NOT NULL,
 	[Restrictions] NVARCHAR(255),
 	CONSTRAINT PK_fare PRIMARY KEY (Flight_no, Fare_code),
-	CONSTRAINT FK_flight_no4 FOREIGN KEY (Flight_no) REFERENCES FLIGHT(Flight_number)
+	CONSTRAINT FK_flight_no4 FOREIGN KEY (Flight_no) REFERENCES FLIGHT(Flight_number),
+	CONSTRAINT CHK_amount CHECK(Amount > 40)
 );
 
 CREATE TABLE AIRPLANE_TYPE (
@@ -78,6 +81,7 @@ CREATE TABLE LEG_INSTANCE (
 	CONSTRAINT FK_airplane_id7 FOREIGN KEY (Airplane_id) REFERENCES AIRPLANE(Airplane_id),
 	CONSTRAINT FK_departure_airport_code7 FOREIGN KEY (Departure_airport_code) REFERENCES AIRPORT(Airport_code),
 	CONSTRAINT FK_arrival_airport_code7 FOREIGN KEY (Arrival_airport_code) REFERENCES AIRPORT(Airport_code)
+	--CONSTRAINT CHK_date CHECK(CAST([Date] AS DATE) > GETDATE()) --yeni eklenen kayıt geçmiş günlerden olmasın
 );
 
 CREATE TABLE CAN_LAND (

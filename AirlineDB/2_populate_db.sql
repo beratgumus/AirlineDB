@@ -111,3 +111,7 @@ VALUES
 (5,1,'2017-11-17',6,5,'ADB','2017-11-17 21:50','IST','2017-11-17 23:05'),  -- izmir -> tokyo part1
 (5,2,'2017-11-18',13,5,'IST','2017-11-18 02:19','NRT','2017-11-18 19:59'); -- izmir -> tokyo part2, +1
 
+
+INSERT INTO SEAT_RESERVATION (Flight_no, Leg_no, Date, Seat_number, Customer_name, Customer_phone)
+VALUES
+(5, 2, '2017-11-18', 14, 'Selim Gezgin', '+905532221144');
