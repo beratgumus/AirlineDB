@@ -29,8 +29,8 @@
 15) Flight_number, Leg_number ve Date'i verilen uçuştaki adı "X" olan yolcunun telefon numarası
 16) İzmirdeki havalimanlarından 400tlden fazla ödeyerek uçuş yapmış yolcuların telefon numaraları
 17) ~~Uluslar arası uçuş gerçekleştiren havayolları listesi~~
-18) Aktarmalı uçuşların listesi
-19) izmirde 5den fazla uçuş yapmış şirketlerin listesi
+18) ~~Aktarmalı uçuşların listesi~~
+19) ~~izmirde 5den fazla uçuş yapmış şirketlerin listesi~~
 20) havalimanını en çok kullanan şirketlerin listesi ( ORDER BY )
 21) planlanan iniş havalimanından farklı havalimanına inen fakat inmesi normalde mümkün olmayan uçuşlar
 22) Kalktığı havalimanına geri dönen uçuşlar
