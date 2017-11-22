@@ -13,7 +13,7 @@
 ## SELECT
 
 1) Yarım saatten fazla rotar yapan ucusları bulan SQL
-2) ~~ Adı verilen havaalanına inebilen uçakların listesi ~~
+2) ~~Adı verilen havaalanına inebilen uçakların listesi~~
 3) Planlanan yerden farklı yere iniş yapan uçuşlar
 4) Kalkış yapmış fakat iniş yapmamış uçakların şirketi (2 tablo)
 5) Kalkış yapmış fakat iniş yapmamış uçakların sayısı
@@ -28,7 +28,7 @@
 14) verilen bir havayolu şirketinin 5den fazla uçuş yapmış yolcuların listesi
 15) Flight_number, Leg_number ve Date'i verilen uçuştaki adı "X" olan yolcunun telefon numarası
 16) İzmirdeki havalimanlarından 400tlden fazla ödeyerek uçuş yapmış yolcuların telefon numaraları
-17) Uluslar arası uçuş gerçekleştiren havayolları listesi 
+17) ~~Uluslar arası uçuş gerçekleştiren havayolları listesi~~
 18) Aktarmalı uçuşların listesi
 19) izmirde 5den fazla uçuş yapmış şirketlerin listesi
 20) havalimanını en çok kullanan şirketlerin listesi ( ORDER BY )
