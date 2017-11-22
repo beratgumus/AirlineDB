@@ -20,7 +20,7 @@
 6) leg_instance da tamamlanmış uçuşların available seats sayısı %50den fazla olanları bulan sql + sabah1)akşam
 7) şehirlere göre yoğunlu|uçuş sayısını gösteren sql
 8) verilen bir şehirdeki, verilen tarihler arasında 10'den az uçuş gerçekleşmiş havaalanına
-9) verilen bir havaalanında verilen tarihler arasında 5'den az uçuz yapmış şirketlerin isimleri
+9) ~~verilen bir havaalanında verilen tarihler arasında 5'den az uçuz yapmış şirketlerin isimleri~~
 10) verilan havaalanına inebilecek uçaklar arasından en fazla yolcu alabileni bulan sql
 11) verilen havaalanında 700 TLden pahallıya bilet satan havayolu şirketlerinin adı (exist, nested)
 12) verilen bir havayolu şirketinin, rötarlı uçuşlarında uçan yolcularının listesi(neden: hediye göndereceğiz :) )
