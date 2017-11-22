@@ -22,3 +22,29 @@ WHERE Flight_number IN (
 	ON fl.Arrival_airport_code = a2.Airport_code
 	WHERE a1.State != a2.State
 )
+
+
+-- 18) Aktarmalı uçuşların listesi
+SELECT DISTINCT FLIGHT_LEG.Flight_no
+FROM FLIGHT_LEG , 
+	(
+		SELECT COUNT(*) AS Flight_count, FLIGHT_LEG.Flight_no
+		FROM FLIGHT, FLIGHT_LEG
+		WHERE FLIGHT.Flight_number = FLIGHT_LEG.Flight_no
+		GROUP BY FLIGHT_LEG.Flight_no
+	) RESULT
+WHERE RESULT.Flight_count > 1
+AND RESULT.Flight_no = FLIGHT_LEG.Flight_no;
+
+
+-- 19. izmirde 5den fazla uçuş yapmış şirketlerin listesi
+SELECT RESULT.Airline
+FROM (
+	SELECT COUNT(*) AS Flight_count, FLIGHT.Airline
+	FROM AIRPORT, LEG_INSTANCE, FLIGHT
+	WHERE AIRPORT.City = 'İzmir'
+	AND AIRPORT.Airport_code = LEG_INSTANCE.Departure_airport_code
+	AND LEG_INSTANCE.Flight_no = FLIGHT.Flight_number
+	GROUP BY FLIGHT.Airline
+) RESULT
+WHERE RESULT.Flight_count > 5
