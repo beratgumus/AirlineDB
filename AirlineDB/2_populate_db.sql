@@ -15,7 +15,8 @@ VALUES
 (3, 'Türk Hava Yolları', '1,2,3,4,5'), -- istanbul -> izmir | aktarmasız | öğlen
 (4, 'Türk Hava Yolları', '1,5'), -- istanbul -> tokyo | aktarmasız | gece
 (5, 'Türk Hava Yolları', '5'), -- izmir -> tokyo | aktarmalı | sabah + 1 gün
-(6, 'Alamet Havayolları', '1');
+(6, 'Alamet Havayolları', '1'),
+(7, 'Alamet Havayolları', '2');
 
 
 INSERT INTO FLIGHT_LEG (Flight_no, Leg_number, Departure_airport_code, Scheduled_departure_time,
@@ -27,7 +28,8 @@ VALUES
 (4, 1, 'IST', '02:10', 'NRT', '19:50'),
 (5, 1, 'ADB', '21:50', 'IST', '23:05'), -- izmir -> tokyo part1
 (5, 2, 'IST', '02:10', 'NRT', '19:50'), -- izmir -> tokyo part2
-(6, 1, 'IST', '13:15', 'ESB', '14:10');
+(6, 1, 'IST', '13:15', 'ESB', '14:10'),
+(7, 1, 'ADB', '07:10', 'IST', '08:00');
 
 INSERT INTO FARE (Flight_no, Fare_code, Amount, Restrictions)
 VALUES
@@ -40,7 +42,9 @@ VALUES
 (4, 1, 2100, NULL),
 (4, 2, 2700, NULL),
 (5, 1, 2300, NULL),
-(5, 2, 3000, NULL);
+(5, 2, 3000, NULL),
+(6, 1, 35, NULL),
+(7, 1, 35, NULL);
 
 -- Source: https://tr.wikipedia.org/wiki/T%C3%BCrk_Hava_Yollar%C4%B1
 INSERT INTO AIRPLANE_TYPE (Airplane_type_name, Max_seats, Company)
@@ -112,7 +116,8 @@ VALUES
 (4,1,'2017-11-17',6,5,'IST','2017-11-17 02:17','NRT','2017-11-17 19:58'),
 (5,1,'2017-11-17',6,5,'ADB','2017-11-17 21:50','IST','2017-11-17 23:05'),  -- izmir -> tokyo part1
 (5,2,'2017-11-18',13,5,'IST','2017-11-18 02:19','NRT','2017-11-18 19:59'), -- izmir -> tokyo part2, +1
-(6,1,'2023-11-18',153,9,'IST',null, null, null); -- alamet havayolları
+(6,1,'2023-11-18',153,9,'IST',null, null, null), -- alamet havayolları
+(7,1,'2023-11-18',153,9,'ADB', null, null, null);
 
 
 INSERT INTO SEAT_RESERVATION (Flight_no, Leg_no, Date, Seat_number, Customer_name, Customer_phone)

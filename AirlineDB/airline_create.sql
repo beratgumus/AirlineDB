@@ -48,7 +48,7 @@ CREATE TABLE FARE (
 	[Restrictions] NVARCHAR(255),
 	CONSTRAINT PK_fare PRIMARY KEY (Flight_no, Fare_code),
 	CONSTRAINT FK_flight_no4 FOREIGN KEY (Flight_no) REFERENCES FLIGHT(Flight_number),
-	CONSTRAINT CHK_amount CHECK(Amount > 40)
+	CONSTRAINT CHK_amount CHECK(Amount > 10)
 );
 
 CREATE TABLE AIRPLANE_TYPE (
@@ -74,7 +74,7 @@ CREATE TABLE LEG_INSTANCE (
 	[Airplane_id] INT NOT NULL,
 	[Departure_airport_code] CHAR(3) NOT NULL,
 	[Departure_time] SMALLDATETIME ,
-	[Arrival_airport_code] CHAR(3) NOT NULL,
+	[Arrival_airport_code] CHAR(3),
 	[Arrival_time] SMALLDATETIME ,
 	CONSTRAINT PK_leg_instance PRIMARY KEY (Flight_no, Leg_no, [Date]),
 	CONSTRAINT FK_flight_leg7 FOREIGN KEY (Flight_no, Leg_no) REFERENCES FLIGHT_LEG(Flight_no, Leg_number),
