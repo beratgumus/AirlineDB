@@ -10,6 +10,21 @@ AND CAN_LAND.Airplane_type_name = AIRPLANE_TYPE.Airplane_type_name
 AND AIRPLANE_TYPE.Airplane_type_name = AIRPLANE.Airplane_type;
 
 
+-- 9) verilen bir havaalanında, verilen tarihden sonra, 5'den az uçuş yapmış şirketlerin isimleri
+SELECT *
+FROM (
+		SELECT COUNT(*) AS Flight_count, FLIGHT.Airline 
+		FROM AIRPORT, FLIGHT, LEG_INSTANCE
+		WHERE AIRPORT.Name = 'Atatürk Havalimanı'
+		AND LEG_INSTANCE.Departure_airport_code = AIRPORT.Airport_code
+		AND FLIGHT.Flight_number = LEG_INSTANCE.Flight_no
+		AND LEG_INSTANCE.Date > CAST('2015.01.01' AS DATE)
+		--AND LEG_INSTANCE.Date < CAST(GETDATE() AS DATE) --yapMIŞ dediği için
+		GROUP BY FLIGHT.Airline
+	) RESULT
+WHERE RESULT.Flight_count < 5
+
+
 -- 17. Uluslar arası uçuş gerçekleştiren havayolları listesi
 SELECT DISTINCT Airline
 FROM FLIGHT
