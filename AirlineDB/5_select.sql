@@ -1,6 +1,15 @@
 ﻿USE Airline1
 GO
 
+-- 1. Yarım saatten fazla rotar yapan ucusları bulan SQL
+
+SELECT	 LI.Flight_no,Scheduled_departure_time,CAST(LI.Departure_time as TIME(0)) as Departure_time
+FROM	FLIGHT_LEG as FL
+INNER JOIN LEG_INSTANCE as LI
+ON FL.Flight_no = LI.Flight_no
+AND FL.Leg_number = LI.Leg_no
+WHERE (select DATEDIFF(minute,CAST(LI.Date as DATETIME)+CAST(FL.Scheduled_departure_time as DATETIME),LI.Departure_time )) >30;
+
 -- 2. Adı verilen havaalanına inebilen uçakların listesi
 SELECT AIRPLANE.*
 FROM AIRPORT, CAN_LAND, AIRPLANE_TYPE, AIRPLANE
