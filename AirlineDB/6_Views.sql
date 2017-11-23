@@ -1,5 +1,6 @@
 -- Aktarmali ucuslarin, ilk aktarmasinin kalkis tarihi ve saati ile son aktarmasinin inis tarihi ve saatinin musterilere gostermek amaciyla view olusturma amaciyla yazilan sql
-
+-- Sorgu 3 aktarmali ucus testinde cakildi, yazarken de hissetmistim...
+-- Generic yapilmali !!!
 SELECT	FL1.Flight_no,LI1.Date as Departure_Date,FL1.Scheduled_departure_time,(CAST(LI2.Arrival_time as DATE)) AS Arrival_date,FL2.Scheduled_arrival_time
 FROM	(FLIGHT_LEG AS FL1 
 INNER JOIN FLIGHT_LEG AS FL2 
