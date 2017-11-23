@@ -10,6 +10,9 @@
 7) Aktarmalı uçuşlar arasında, önceki uçuşun iniş tarihi ve saatinden önce diğer aktarmalı uçak kalkış yapmamalı
 8) AIRPLANE tablosundaki Total_number_of_seats AIRPLANE_TYPE tablosundaki Max_seats den büyük olmamalı
 
+## Views
+1)~Aktarmali ucuslarin, ilk aktarmasinin kalkis tarihi ve saati ile son aktarmasinin inis tarihi ve saatini musterilere gostermek amaciyla view olusturma~
+
 ## SELECT
 
 1) ~~Yarım saatten fazla rotar yapan ucusları bulan SQL~~
