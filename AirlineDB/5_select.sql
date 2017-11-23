@@ -2,13 +2,13 @@
 GO
 
 -- 1. Yarım saatten fazla rotar yapan ucusları bulan SQL
-
-SELECT	 LI.Flight_no,Scheduled_departure_time,CAST(LI.Departure_time as TIME(0)) as Departure_time
-FROM	FLIGHT_LEG as FL
+SELECT FL.Flight_no, Leg_no, [Date],  Scheduled_departure_time, CAST(LI.Departure_time as TIME(0)) as Departure_time
+FROM FLIGHT_LEG as FL
 INNER JOIN LEG_INSTANCE as LI
 ON FL.Flight_no = LI.Flight_no
 AND FL.Leg_number = LI.Leg_no
-WHERE (select DATEDIFF(minute,CAST(LI.Date as DATETIME)+CAST(FL.Scheduled_departure_time as DATETIME),LI.Departure_time )) >30;
+WHERE ( SELECT DATEDIFF(minute, CAST(LI.Date as DATETIME) + CAST(FL.Scheduled_departure_time as DATETIME), LI.Departure_time ) ) > 30;
+
 
 -- 2. Adı verilen havaalanına inebilen uçakların listesi
 SELECT AIRPLANE.*
@@ -17,6 +17,14 @@ WHERE AIRPORT.Name = 'Adnan Menderes Havalimanı'
 AND CAN_LAND.Airport_code = AIRPORT.Airport_code 
 AND CAN_LAND.Airplane_type_name = AIRPLANE_TYPE.Airplane_type_name
 AND AIRPLANE_TYPE.Airplane_type_name = AIRPLANE.Airplane_type;
+
+
+-- 6) Tamamlanmış uçuşların boş koltuk sayısı %50den fazla olanları bulan sql
+SELECT Flight_no, Leg_no, [Date], Number_of_available_seats, Total_number_of_seats, CAST(Number_of_available_seats * 100 as float) / CAST(Total_number_of_seats as float) as Rate
+FROM LEG_INSTANCE as LI, AIRPLANE as A
+WHERE LI.Arrival_time IS NOT NULL
+AND LI.Airplane_id = A.Airplane_id
+AND (CAST(Number_of_available_seats * 100 as float) / CAST(Total_number_of_seats as float) ) > 50
 
 
 -- 9) verilen bir havaalanında, verilen tarihden sonra, 5'den az uçuş yapmış şirketlerin isimleri
