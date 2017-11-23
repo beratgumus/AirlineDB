@@ -3,6 +3,8 @@
 
 USE Airline1
 GO
+CREATE VIEW VW_firstDeparture_lastArrival_of_connectingFlights
+AS
 
 SELECT	first_leg.Flight_no,first_leg.Departure_date,first_leg.Scheduled_departure_time,last_leg.Arrival_date,last_leg.Scheduled_arrival_time 
 FROM
