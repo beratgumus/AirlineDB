@@ -17,7 +17,7 @@
 
 1) ~~Yarım saatten fazla rotar yapan ucusları bulan SQL~~
 2) ~~Adı verilen havaalanına inebilen uçakların listesi~~
-3) Planlanan yerden farklı yere iniş yapan uçuşlar
+3) ~~Planlanan yerden farklı yere iniş yapan uçuşlar~~
 4) Kalkış yapmış fakat iniş yapmamış uçakların şirketi (2 tablo)
 5) Kalkış yapmış fakat iniş yapmamış uçakların sayısı
 6) leg_instance da tamamlanmış uçuşların available seats sayısı %50den fazla olanları bulan sql + sabah1)akşam
