@@ -18,6 +18,15 @@ AND CAN_LAND.Airport_code = AIRPORT.Airport_code
 AND CAN_LAND.Airplane_type_name = AIRPLANE_TYPE.Airplane_type_name
 AND AIRPLANE_TYPE.Airplane_type_name = AIRPLANE.Airplane_type;
 
+-- 3. Planlanan yerden farklı yere iniş ya da farkli yerden kalkis yapan uçuşlar
+
+USE Airline1
+SELECT	*
+FROM FLIGHT_LEG as FL, LEG_INSTANCE as LI
+WHERE	(FL.Flight_no=LI.Flight_no AND FL.Leg_number = LI.Leg_no)
+		AND ((FL.Arrival_airport_code != LI.Arrival_airport_code )
+		OR (FL.Departure_airport_code != LI.Departure_airport_code))
+		
 
 -- 6) Tamamlanmış uçuşların boş koltuk sayısı %50den fazla olanları bulan sql
 SELECT Flight_no, Leg_no, [Date], Number_of_available_seats, Total_number_of_seats, CAST(Number_of_available_seats * 100 as float) / CAST(Total_number_of_seats as float) as Rate
