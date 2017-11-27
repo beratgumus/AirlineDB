@@ -66,16 +66,11 @@ WHERE Flight_number = INTERNATIONAL_FLIGHTS.Flight_no
 
 
 -- 18) Aktarmalı uçuşların listesi
-SELECT DISTINCT FLIGHT_LEG.Flight_no
-FROM FLIGHT_LEG , 
-	(
-		SELECT COUNT(*) AS Flight_count, FLIGHT_LEG.Flight_no
-		FROM FLIGHT, FLIGHT_LEG
-		WHERE FLIGHT.Flight_number = FLIGHT_LEG.Flight_no
-		GROUP BY FLIGHT_LEG.Flight_no
-	) RESULT
-WHERE RESULT.Flight_count > 1
-AND RESULT.Flight_no = FLIGHT_LEG.Flight_no;
+SELECT COUNT(*) AS Leg_count, FLIGHT_LEG.Flight_no
+FROM FLIGHT, FLIGHT_LEG
+WHERE FLIGHT.Flight_number = FLIGHT_LEG.Flight_no
+GROUP BY FLIGHT_LEG.Flight_no
+HAVING COUNT(*) > 1
 
 
 -- 19. izmirde 5den fazla uçuş yapmış şirketlerin listesi
