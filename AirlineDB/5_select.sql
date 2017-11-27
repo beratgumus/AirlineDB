@@ -52,17 +52,17 @@ WHERE RESULT.Flight_count < 5
 
 
 -- 17. Uluslar arası uçuş gerçekleştiren havayolları listesi
-SELECT DISTINCT Airline
-FROM FLIGHT
-WHERE Flight_number IN (
+WITH INTERNATIONAL_FLIGHTS(Flight_no) AS
+(
 	SELECT fl.Flight_no
-	FROM FLIGHT_LEG AS fl
-	INNER JOIN AIRPORT AS a1
-	ON fl.Departure_airport_code = a1.Airport_code
-	INNER JOIN AIRPORT AS a2
-	ON fl.Arrival_airport_code = a2.Airport_code
-	WHERE a1.State != a2.State
+	FROM FLIGHT_LEG AS fl, AIRPORT AS a1, AIRPORT AS a2
+	WHERE fl.Departure_airport_code = a1.Airport_code
+	AND fl.Arrival_airport_code = a2.Airport_code
+	AND a1.State != a2.State
 )
+SELECT DISTINCT Airline
+FROM FLIGHT, INTERNATIONAL_FLIGHTS
+WHERE Flight_number = INTERNATIONAL_FLIGHTS.Flight_no
 
 
 -- 18) Aktarmalı uçuşların listesi
