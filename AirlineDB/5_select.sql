@@ -74,13 +74,10 @@ HAVING COUNT(*) > 1
 
 
 -- 19. izmirde 5den fazla uçuş yapmış şirketlerin listesi
-SELECT RESULT.Airline
-FROM (
-	SELECT COUNT(*) AS Flight_count, FLIGHT.Airline
-	FROM AIRPORT, LEG_INSTANCE, FLIGHT
-	WHERE AIRPORT.City = 'İzmir'
-	AND AIRPORT.Airport_code = LEG_INSTANCE.Departure_airport_code
-	AND LEG_INSTANCE.Flight_no = FLIGHT.Flight_number
-	GROUP BY FLIGHT.Airline
-) RESULT
-WHERE RESULT.Flight_count > 5
+SELECT COUNT(*) AS Flight_count, FLIGHT.Airline
+FROM AIRPORT, LEG_INSTANCE, FLIGHT
+WHERE AIRPORT.City = 'İzmir'
+AND AIRPORT.Airport_code = LEG_INSTANCE.Departure_airport_code
+AND LEG_INSTANCE.Flight_no = FLIGHT.Flight_number
+GROUP BY FLIGHT.Airline
+HAVING COUNT(*) > 5
