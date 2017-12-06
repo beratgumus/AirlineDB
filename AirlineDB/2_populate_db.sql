@@ -119,7 +119,7 @@ VALUES
 (5,2,'2017-11-18',13,5,'IST','2017-11-18 02:19','NRT','2017-11-18 19:59'), -- izmir -> tokyo part2, +1
 (6,1,'2023-11-18',153,9,'IST',null, null, null), -- alamet havayolları
 (7,1,'2023-11-18',153,9,'ADB', null, null, null),
-(2,1,'2017-11-15',17,1,'ADB','2017-11-15 10:51','ESB','2017-11-15 12:40'); -- Planlanan yerden farkli havaalanina inen ucus -- IST yerine ESB ye iniyor
+(2,1,'2017-11-14',17,1,'ADB','2017-11-14 10:51','ESB','2017-11-14 12:40'); -- Planlanan yerden farkli havaalanina inen ucus -- IST yerine ESB ye iniyor
 
 
 INSERT INTO SEAT_RESERVATION (Flight_no, Leg_no, Date, Seat_number, Customer_name, Customer_phone)

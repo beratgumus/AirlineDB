@@ -81,3 +81,10 @@ AND AIRPORT.Airport_code = LEG_INSTANCE.Departure_airport_code
 AND LEG_INSTANCE.Flight_no = FLIGHT.Flight_number
 GROUP BY FLIGHT.Airline
 HAVING COUNT(*) > 5
+
+
+--23. Planlanan havada kalma suresinden daha fazla surede ucusu tamamlayan ucuslar
+SELECT	LI.Flight_no,LI.Leg_no,LI.Date,(DATEDIFF(MINUTE,FL.Scheduled_departure_time,FL.Scheduled_arrival_time)) AS Planlanan_Ucus_Suresi,DATEDIFF(MINUTE,LI.Departure_time,LI.Arrival_time) AS Gerceklesen_Ucus_Suresi
+FROM	FLIGHT_LEG AS FL,LEG_INSTANCE AS LI
+WHERE	FL.Flight_no=LI.Flight_no AND FL.Leg_number=LI.Leg_no
+		AND  (DATEDIFF(MINUTE,LI.Departure_time,LI.Arrival_time)) - (DATEDIFF(MINUTE,FL.Scheduled_departure_time,FL.Scheduled_arrival_time))  >0;
