@@ -37,7 +37,7 @@
 20) havalimanını en çok kullanan şirketlerin listesi ( ORDER BY )
 21) planlanan iniş havalimanından farklı havalimanına inen fakat inmesi normalde mümkün olmayan uçuşlar
 22) Kalktığı havalimanına geri dönen uçuşlar
-23) Planlanan havada kalma suresinden daha az/fazla surede ucusu tamamlayan ucuslar
+23) ~~Planlanan havada kalma suresinden daha az/fazla surede ucusu tamamlayan ucuslar~~
 
 ## Yeniliklerimiz
 1) Arrival_airport_code NULL olabilir > uçak kalkış yapmış ama havaalanına inmemiş (kaza yapma durumu) ;)
