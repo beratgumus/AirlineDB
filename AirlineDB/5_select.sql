@@ -179,4 +179,5 @@ WHERE	 NOT EXISTS (SELECT	*
 				WHERE	LI.Flight_no=Flight_no
 				AND		LI.Leg_no=FL.Leg_number
 				AND		LI.Arrival_airport_code is NOT NULL
+				AND		LI.Arrival_time is NOT NULL
 				);
