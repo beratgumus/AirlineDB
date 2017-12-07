@@ -1,6 +1,6 @@
 ﻿USE Airline1
 GO
--- 1. Yarım saatten fazla rotar yapan ucusların havayolu sirketini ve yolcularını bulan SQL
+-- 1. Havayolu şirketlerinin,yarım saatten fazla rotar yapan ucuslarında uçan yolcularının listesi
 SELECT FL.Flight_no, LI.Leg_no, LI.[Date],  Scheduled_departure_time, CAST(LI.Departure_time as TIME(0)) as Departure_time,Airline,Customer_name
 FROM FLIGHT_LEG as FL, LEG_INSTANCE as LI,FLIGHT,SEAT_RESERVATION as SR
 WHERE FL.Flight_no = LI.Flight_no
