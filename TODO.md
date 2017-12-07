@@ -24,7 +24,7 @@
 7) şehirlere göre yoğunlu|uçuş sayısını gösteren sql
 8) verilen bir şehirdeki, verilen tarihler arasında 10'den az uçuş gerçekleşmiş havaalanına
 9) ~~verilen bir havaalanında verilen tarihler arasında 5'den az uçuz yapmış şirketlerin isimleri~~
-10) verilan havaalanına inebilecek uçaklar arasından en fazla yolcu alabileni bulan sql
+10) ~~verilen bir havaalanına inebilecek uçakları alabildiği yolcu sayısına göre sıralayan sql~~
 11) verilen havaalanında 700 TLden pahallıya bilet satan havayolu şirketlerinin adı (exist, nested)
 12) verilen bir havayolu şirketinin, rötarlı uçuşlarında uçan yolcularının listesi(neden: hediye göndereceğiz :) )
 13) verilen havayollarının pazartesi günü, öğlenden önce gerçekleştirdiği uçuşlar
@@ -38,6 +38,7 @@
 21) planlanan iniş havalimanından farklı havalimanına inen fakat inmesi normalde mümkün olmayan uçuşlar
 22) Kalktığı havalimanına geri dönen uçuşlar
 23) ~~Planlanan havada kalma suresinden daha az/fazla surede ucusu tamamlayan ucuslar~~
+24) ~~istanbul-japonya arası aktarmasız uçuşlardaki aynı telefon numarasına sahip müşterilerin adı~~
 
 ## Yeniliklerimiz
 1) Arrival_airport_code NULL olabilir > uçak kalkış yapmış ama havaalanına inmemiş (kaza yapma durumu) ;)

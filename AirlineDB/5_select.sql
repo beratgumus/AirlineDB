@@ -25,7 +25,7 @@ SELECT	*
 FROM FLIGHT_LEG as FL, LEG_INSTANCE as LI
 WHERE	(FL.Flight_no=LI.Flight_no AND FL.Leg_number = LI.Leg_no)
 		AND ((FL.Arrival_airport_code != LI.Arrival_airport_code )
-		OR (FL.Departure_airport_code != LI.Departure_airport_code))
+		OR (FL.Departure_airport_code != LI.Departure_airport_code));
 		
 
 -- 6) Tamamlanmış uçuşların boş koltuk sayısı %50den fazla olanları bulan sql
@@ -33,7 +33,7 @@ SELECT Flight_no, Leg_no, [Date], Number_of_available_seats, Total_number_of_sea
 FROM LEG_INSTANCE as LI, AIRPLANE as A
 WHERE LI.Arrival_time IS NOT NULL
 AND LI.Airplane_id = A.Airplane_id
-AND (CAST(Number_of_available_seats * 100 as float) / CAST(Total_number_of_seats as float) ) > 50
+AND (CAST(Number_of_available_seats * 100 as float) / CAST(Total_number_of_seats as float) ) > 50;
 
 
 -- 9) verilen bir havaalanında, verilen tarihden sonra, 5'den az uçuş yapmış şirketlerin isimleri
@@ -48,7 +48,16 @@ FROM (
 		--AND LEG_INSTANCE.Date < CAST(GETDATE() AS DATE) --yapMIŞ dediği için
 		GROUP BY FLIGHT.Airline
 	) RESULT
-WHERE RESULT.Flight_count < 5
+WHERE RESULT.Flight_count < 5;
+
+
+-- 10) verilen bir havaalanına inebilecek uçakları alabildiği yolcu sayısına göre sıralayan sql
+SELECT A.Airplane_id, A.Total_number_of_seats
+FROM AIRPORT, CAN_LAND as CL, AIRPLANE A
+WHERE AIRPORT.Name = 'Adnan Menderes Havalimanı'
+AND AIRPORT.Airport_code = CL.Airport_code
+AND A.Airplane_type = CL.Airplane_type_name
+ORDER BY A.Total_number_of_seats DESC;
 
 
 -- 17. Uluslar arası uçuş gerçekleştiren havayolları listesi
@@ -62,7 +71,7 @@ WITH INTERNATIONAL_FLIGHTS(Flight_no) AS
 )
 SELECT DISTINCT Airline
 FROM FLIGHT, INTERNATIONAL_FLIGHTS
-WHERE Flight_number = INTERNATIONAL_FLIGHTS.Flight_no
+WHERE Flight_number = INTERNATIONAL_FLIGHTS.Flight_no;
 
 
 -- 18) Aktarmalı uçuşların listesi
@@ -70,7 +79,7 @@ SELECT COUNT(*) AS Leg_count, FLIGHT_LEG.Flight_no
 FROM FLIGHT, FLIGHT_LEG
 WHERE FLIGHT.Flight_number = FLIGHT_LEG.Flight_no
 GROUP BY FLIGHT_LEG.Flight_no
-HAVING COUNT(*) > 1
+HAVING COUNT(*) > 1;
 
 
 -- 19. izmirde 5den fazla uçuş yapmış şirketlerin listesi
@@ -80,11 +89,36 @@ WHERE AIRPORT.City = 'İzmir'
 AND AIRPORT.Airport_code = LEG_INSTANCE.Departure_airport_code
 AND LEG_INSTANCE.Flight_no = FLIGHT.Flight_number
 GROUP BY FLIGHT.Airline
-HAVING COUNT(*) > 5
+HAVING COUNT(*) > 5;
 
 
 --23. Planlanan havada kalma suresinden daha fazla surede ucusu tamamlayan ucuslar
 SELECT	LI.Flight_no,LI.Leg_no,LI.Date,(DATEDIFF(MINUTE,FL.Scheduled_departure_time,FL.Scheduled_arrival_time)) AS Planlanan_Ucus_Suresi,DATEDIFF(MINUTE,LI.Departure_time,LI.Arrival_time) AS Gerceklesen_Ucus_Suresi
 FROM	FLIGHT_LEG AS FL,LEG_INSTANCE AS LI
 WHERE	FL.Flight_no=LI.Flight_no AND FL.Leg_number=LI.Leg_no
-		AND  (DATEDIFF(MINUTE,LI.Departure_time,LI.Arrival_time)) - (DATEDIFF(MINUTE,FL.Scheduled_departure_time,FL.Scheduled_arrival_time))  >0;
+AND  (DATEDIFF(MINUTE,LI.Departure_time,LI.Arrival_time)) - (DATEDIFF(MINUTE,FL.Scheduled_departure_time,FL.Scheduled_arrival_time))  >0;
+
+
+-- 24.istanbul-japonya arası aktarmasız uçuşlardaki aynı telefon numarasına sahip müşterilerin adı
+WITH IJ_FLIGHTS(Flight_no) AS
+(
+	SELECT fl.Flight_no
+	FROM FLIGHT_LEG AS fl, AIRPORT AS a1, AIRPORT AS a2
+	WHERE fl.Departure_airport_code = a1.Airport_code
+	AND fl.Arrival_airport_code = a2.Airport_code
+	AND a1.City = 'İstanbul'
+	AND a2.State = 'Japan'
+)
+SELECT SEAT_RESERVATION.Customer_name 
+FROM SEAT_RESERVATION
+WHERE SEAT_RESERVATION.Customer_phone IN (
+
+	SELECT SR.Customer_phone
+	FROM IJ_FLIGHTS, LEG_INSTANCE as LI, SEAT_RESERVATION as SR
+	WHERE LI.Flight_no = IJ_FLIGHTS.Flight_no
+	AND SR.Flight_no = LI.Flight_no
+	AND SR.Leg_no = LI.Leg_no
+	AND SR.Date = LI.Date
+	GROUP BY SR.Customer_phone
+	HAVING COUNT(*) > 1
+);
