@@ -152,7 +152,16 @@ WHERE SEAT_RESERVATION.Customer_phone IN (
 	HAVING COUNT(*) > 1
 );
 
-
+-- 25) Not Exists -- Kaza yapmis ucuslarin listesi
+SELECT *
+FROM	LEG_INSTANCE as LI
+WHERE	 NOT EXISTS (SELECT	*
+				FROM	FLIGHT_LEG as FL
+				WHERE	LI.Flight_no=Flight_no
+				AND		LI.Leg_no=FL.Leg_number
+				AND		LI.Arrival_airport_code is NOT NULL
+				AND		LI.Arrival_time is NOT NULL
+				);
 
 -- 5.d. Exists -- Max_seats i 200 den buyuk olan ucaklar
 SELECT *
@@ -163,16 +172,7 @@ WHERE	EXISTS (SELECT	*
 				AND		Max_seats >200
 				);
 
--- 5.d. Not Exists -- Kaza yapmis ucuslarin listesi
-SELECT *
-FROM	LEG_INSTANCE as LI
-WHERE	 NOT EXISTS (SELECT	*
-				FROM	FLIGHT_LEG as FL
-				WHERE	LI.Flight_no=Flight_no
-				AND		LI.Leg_no=FL.Leg_number
-				AND		LI.Arrival_airport_code is NOT NULL
-				AND		LI.Arrival_time is NOT NULL
-				);
+
 
 
 -- 5.d. Not Exist -- verilen havalimanında hiç uçuş yapmamış şirket

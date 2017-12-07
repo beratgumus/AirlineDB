@@ -39,7 +39,7 @@
 22) Kalktığı havalimanına geri dönen uçuşlar
 23) ~~Planlanan havada kalma suresinden daha az/fazla surede ucusu tamamlayan ucuslar~~
 24) ~~istanbul-japonya arası aktarmasız uçuşlardaki aynı telefon numarasına sahip müşterilerin adı~~
-
+25)~~Kaza yapmis ucuslarin listesi~~
 ## Yeniliklerimiz
 1) Arrival_airport_code NULL olabilir > uçak kalkış yapmış ama havaalanına inmemiş (kaza yapma durumu) ;)
 2) FLIGHT_LEG tablosuna kilometre eklemek. (select 2)
@@ -58,17 +58,17 @@ relational model. You can select any of the DBMS you wish.~~
 4) ~~Write down 3 check constraints and~~ 3 assertions. ~~Check constraints and~~ assertions should be
 meaningful.
 5) Write down the following SQL statements:
-  a. Write sample ~~INSERT~~, DELETE and ~~UPDATE~~ statements for 3 of the tables you have
+  a. Write sample ~~INSERT,~~ DELETE and ~~UPDATE~~ statements for 3 of the tables you have
   chosen.<br>
   ~~b. Write 10 SELECT statements for the database you have implemented.~~<br>
-    i. ~~3 of them should use minimum 2 tables.~~         <strong> => 3,6,18,23  //1 extra queries, use them for another question</strong> <br> 
+    i. ~~3 of them should use minimum 2 tables.~~         <strong> => 3,18,23 </strong> <br> 
     ii. ~~4 of them should use minimum 3 tables.~~       <strong>=> 9,10,17,19 </strong><br> 
     iii. ~~3 of them should use minimum 4 tables.~~      <strong> => 1,2,24   </strong><br>
-  c. Write 4 SELECT statements to exemplify nested and/or correlated nested queries.<br>
+  c. Write ~~4~~1 SELECT statements to exemplify nested and/or correlated nested queries.  <strong> =>20,21,25   </strong><br><br>
   d. ~~Write 2 SELECT statements to exemplify EXISTS and NOT EXISTS statements.~~<br>
   e. Write 3 SELECT statements to exemplify LEFT, RIGHT and FULL OUTER JOIN
   statements.
-6) Create ~~3~~2 views that are reasonable.
+6) Create ~~3~~1 views that are reasonable.
 
 
 
