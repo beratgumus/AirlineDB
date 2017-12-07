@@ -46,3 +46,32 @@
 ## SELECT Yeniliklerimiz
 1) Daha önce hiç kaza yapmamış havayolu şirketleri (NOT EXIST, arrival_airport_code = null, bkz. model 1)
 2) 10000 km'den fazla uçmuş yolcuları bulan sql (yenilik 2)
+
+# What is left ?
+1) Write down the appropriate SQL scripts (DDL statements) for creating the database and its
+relational model. You can select any of the DBMS you wish.
+2) Populate the database you just created again using SQL script file loaded with sample tuples.
+(The tables should have enough number of tuples for the SELECT statements, asked in the
+5th step, to be run accordingly.)
+3) Write down 3 triggers for 3 different tables. Triggers should be meaningful.
+4) Write down 3 check constraints and 3 assertions. Check constraints and assertions should be
+meaningful.
+5) Write down the following SQL statements:
+  a. Write sample INSERT, DELETE and UPDATE statements for 3 of the tables you have
+  chosen.<br>
+  b. Write 10 SELECT statements for the database you have implemented.<br>
+    i. 3 of them should use minimum 2 tables.<br>
+    ii. 4 of them should use minimum 3 tables.<br>
+    iii. 3 of them should use minimum 4 tables.<br>
+  c. Write 4 SELECT statements to exemplify nested and/or correlated nested queries.<br>
+  d. Write 2 SELECT statements to exemplify EXISTS and NOT EXISTS statements.<br>
+  e. Write 3 SELECT statements to exemplify LEFT, RIGHT and FULL OUTER JOIN
+  statements.
+6) Create 3 views that are reasonable.
+
+
+
+
+
+
+
