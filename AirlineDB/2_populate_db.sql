@@ -15,8 +15,9 @@ VALUES
 (3, 'Türk Hava Yolları', '1,2,3,4,5'), -- istanbul -> izmir | aktarmasız | öğlen
 (4, 'Türk Hava Yolları', '1,5'), -- istanbul -> tokyo | aktarmasız | gece
 (5, 'Türk Hava Yolları', '5'), -- izmir -> tokyo | aktarmalı | sabah + 1 gün
-(6, 'Alamet Havayolları', '1'),
-(7, 'Alamet Havayolları', '2');
+(6, 'Alamet Havayolları', '1'), -- istanbul -> ankara
+(7, 'Alamet Havayolları', '2'), -- izmir -> istanbul
+(8, 'Türk Hava Yolları', '1,2,3,4,5,6,7'); -- izmir -> ankara
 
 
 INSERT INTO FLIGHT_LEG (Flight_no, Leg_number, Departure_airport_code, Scheduled_departure_time,
@@ -29,7 +30,8 @@ VALUES
 (5, 1, 'ADB', '21:50', 'IST', '23:05'), -- izmir -> tokyo part1
 (5, 2, 'IST', '02:10', 'NRT', '19:50'), -- izmir -> tokyo part2
 (6, 1, 'IST', '13:15', 'ESB', '14:10'),
-(7, 1, 'ADB', '07:10', 'IST', '08:00');
+(7, 1, 'ADB', '07:10', 'IST', '08:00'),
+(8, 1, 'ADB', '16:25', 'ESB', '17:25');
 
 INSERT INTO FARE (Flight_no, Fare_code, Amount, Restrictions)
 VALUES
@@ -44,7 +46,11 @@ VALUES
 (5, 1, 2300, NULL),
 (5, 2, 3000, NULL),
 (6, 1, 35, NULL),
-(7, 1, 35, NULL);
+(7, 1, 35, NULL),
+(8, 1, 80, NULL),
+(8, 2, 170, NULL);
+
+
 
 -- Source: https://tr.wikipedia.org/wiki/T%C3%BCrk_Hava_Yollar%C4%B1
 INSERT INTO AIRPLANE_TYPE (Airplane_type_name, Max_seats, Company)
@@ -81,7 +87,7 @@ VALUES
 ('Airbus A321-200', 'ESB'),
 ('Airbus A321-200', 'NRT'),
 ('Airbus A321-200', 'YXU'),
-('Airbus A330-200', 'ADB'), -- Airbus A330-200
+('Airbus A330-200', 'ADB'), -- Airbus A330-200 | ESB inemiyor
 ('Airbus A330-200', 'IST'),
 ('Airbus A330-200', 'NRT'),
 ('Airbus A330-200', 'YXU'),
@@ -119,7 +125,8 @@ VALUES
 (5,2,'2017-11-18',13,5,'IST','2017-11-18 02:19','NRT','2017-11-18 19:59'), -- izmir -> tokyo part2, +1
 (6,1,'2023-11-18',153,9,'IST',null, null, null), -- alamet havayolları
 (7,1,'2023-11-18',153,9,'ADB', null, null, null),
-(2,1,'2017-11-14',17,1,'ADB','2017-11-14 10:51','ESB','2017-11-14 12:40'); -- Planlanan yerden farkli havaalanina inen ucus -- IST yerine ESB ye iniyor
+(2,1,'2017-11-14',17,1,'ADB','2017-11-14 10:51','ESB','2017-11-14 12:40'), -- Planlanan yerden farkli havaalanina inen ucus -- IST yerine ESB ye iniyor
+(2,1,'2017-11-21',0,5,'ADB','2017-11-21 10:50','ESB','2017-11-21 13:13'); -- Planlanan yerden farkli havaalanina inen fakat normalde inememesi gereken uçuş
 
 
 INSERT INTO SEAT_RESERVATION (Flight_no, Leg_no, Date, Seat_number, Customer_name, Customer_phone)
