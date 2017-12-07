@@ -17,7 +17,8 @@ VALUES
 (5, 'Türk Hava Yolları', '5'), -- izmir -> tokyo | aktarmalı | sabah + 1 gün
 (6, 'Alamet Havayolları', '1'), -- istanbul -> ankara
 (7, 'Alamet Havayolları', '2'), -- izmir -> istanbul
-(8, 'Türk Hava Yolları', '1,2,3,4,5,6,7'); -- izmir -> ankara
+(8, 'Türk Hava Yolları', '1,2,3,4,5,6,7'), -- izmir -> ankara
+(9, 'United Airlines', '1,5'); -- japonya -> londra
 
 
 INSERT INTO FLIGHT_LEG (Flight_no, Leg_number, Departure_airport_code, Scheduled_departure_time,
@@ -31,7 +32,8 @@ VALUES
 (5, 2, 'IST', '02:10', 'NRT', '19:50'), -- izmir -> tokyo part2
 (6, 1, 'IST', '13:15', 'ESB', '14:10'),
 (7, 1, 'ADB', '07:10', 'IST', '08:00'),
-(8, 1, 'ADB', '16:25', 'ESB', '17:25');
+(8, 1, 'ADB', '16:25', 'ESB', '17:25'),
+(9, 1, 'NRT', '05:00', 'YXU', '01:00');
 
 INSERT INTO FARE (Flight_no, Fare_code, Amount, Restrictions)
 VALUES
@@ -48,7 +50,9 @@ VALUES
 (6, 1, 35, NULL),
 (7, 1, 35, NULL),
 (8, 1, 80, NULL),
-(8, 2, 170, NULL);
+(8, 2, 170, NULL),
+(9, 1, 5590, NULL),
+(9, 2, 6250, NULL);
 
 
 
@@ -74,7 +78,8 @@ VALUES
 (7, 151, 'Boeing 737-900ER'),
 (8, 149, 'Boeing 737-900ER'),
 (9, 153, 'Airbus A320-200'),
-(10, 250, 'Airbus A330-200');
+(10, 250, 'Airbus A330-200'),
+(11, 70, 'Bombardier CRJ700'); -- United Airlines'ın uçağı
 
 
 INSERT INTO CAN_LAND (Airplane_type_name, Airport_code)
@@ -126,26 +131,29 @@ VALUES
 (6,1,'2023-11-18',153,9,'IST',null, null, null), -- alamet havayolları
 (7,1,'2023-11-18',153,9,'ADB', null, null, null),
 (2,1,'2017-11-14',17,1,'ADB','2017-11-14 10:51','ESB','2017-11-14 12:40'), -- Planlanan yerden farkli havaalanina inen ucus -- IST yerine ESB ye iniyor
-(2,1,'2017-11-21',0,5,'ADB','2017-11-21 10:50','ESB','2017-11-21 13:13'); -- Planlanan yerden farkli havaalanina inen fakat normalde inememesi gereken uçuş
-
+(2,1,'2017-11-21',0,5,'ADB','2017-11-21 10:50','ESB','2017-11-21 13:13'), -- Planlanan yerden farkli havaalanina inen fakat normalde inememesi gereken uçuş
+(9,1,'2017-11-22',6,11,'NRT','2017-11-22 05:02', 'YXU', '2017-11-23 00:12');
 
 INSERT INTO SEAT_RESERVATION (Flight_no, Leg_no, Date, Seat_number, Customer_name, Customer_phone)
 VALUES
 (1, 1, '2017-11-13', 1, 'Mehmet Okumuş', '+905551112222'),
 (1, 1, '2017-11-13', 2, 'Melis Okumuş', '+905001002000'),
-(1, 1, '2017-11-15', 3, 'Merve Konuk', '+905108889999'),
-(1, 1, '2017-11-15', 4, 'Burcu Gün', '+905001002001'),
-(1, 1, '2017-11-13', 5, 'Sema Okumamış ', '+905001502002'),
-(1, 1, '2017-11-13', 6, 'Tarkan Altınbaş', '+905531119090'),
-(1, 1, '2017-11-13', 7, 'Tuncay Şanlı', '+905119897777'),
+(1, 1, '2017-11-13', 3, 'Sema Okumamış ', '+905001502002'),
+(1, 1, '2017-11-13', 4, 'Tarkan Altınbaş', '+905531119090'),
+(1, 1, '2017-11-13', 5, 'Tuncay Şanlı', '+905119897777'),
+(1, 1, '2017-11-15', 1, 'Merve Konuk', '+905108889999'),
+(1, 1, '2017-11-15', 2, 'Burcu Gün', '+905001002001'),
 (3, 1, '2017-11-14', 1, 'Mehmet Okumuş', '+905551112222'),
 (3, 1, '2017-11-14', 2, 'Melis Okumuş', '+905001002000'),
 (3, 1, '2017-11-14', 3, 'Tarkan Altınbaş', '+905536669090'),
+(4, 1, '2017-10-22', 1, 'Melis Elibol', '+812083438802'),
+(4, 1, '2017-10-22', 2, 'Hiroto Miyamoto', '+812083438662'),
 (4, 1, '2017-11-13', 1, 'Canberk Kara', '+9055612345678'),
-(4, 1, '2017-10-22', 2, 'Melis Elibol', '+812083438802'),
-(4, 1, '2017-10-22', 3, 'Hiroto Miyamoto', '+812083438662'),
-(4, 1, '2017-11-13', 4, 'Hosuzu Miyamoto', '+812055558801'),
-(4, 1, '2017-11-13', 5, 'Asuka Miyamoto', '+812055558801'),
-(4, 1, '2017-11-13', 6, 'Mert Akıncılar', '+905519890012'),
-(4, 1, '2017-11-13', 7, 'Rana Altıparmak', '+905519890012'),
-(5, 2, '2017-11-18', 14, 'Selim Gezgin', '+905532221144');
+(4, 1, '2017-11-13', 2, 'Hosuzu Miyamoto', '+812055558801'),
+(4, 1, '2017-11-13', 3, 'Asuka Miyamoto', '+812055558801'),
+(4, 1, '2017-11-13', 4, 'Mert Akıncılar', '+905519890012'),
+(4, 1, '2017-11-13', 5, 'Rana Altıparmak', '+905519890012'),
+(5, 2, '2017-11-18', 14, 'Selim Gezgin', '+905532221144')
+(11, 1, '2017-11-22', 1, 'Tetsushou Fukui', '+15415454908'),
+(11, 1, '2017-11-22', 2, 'Hiroto Miyamoto', '+812083438662'),
+(11, 1, '2017-11-22', 3, 'Lisa L. Smith', '+16415524531');
