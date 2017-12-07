@@ -18,8 +18,8 @@ AND CAN_LAND.Airport_code = AIRPORT.Airport_code
 AND CAN_LAND.Airplane_type_name = AIRPLANE_TYPE.Airplane_type_name
 AND AIRPLANE_TYPE.Airplane_type_name = AIRPLANE.Airplane_type;
 
--- 3. Planlanan yerden farklı yere iniş ya da farkli yerden kalkis yapan uçuşlar
 
+-- 3. Planlanan yerden farklı yere iniş ya da farkli yerden kalkis yapan uçuşlar
 USE Airline1
 SELECT	*
 FROM FLIGHT_LEG as FL, LEG_INSTANCE as LI
@@ -92,6 +92,26 @@ GROUP BY FLIGHT.Airline
 HAVING COUNT(*) > 5;
 
 
+-- 20. verilen bir havalimanını en çok kullanan şirketlerin listesi
+-- Flight_count = iniş havalimanı + kalkış havalimanı 'Adnan Menderes Havalimanı'
+-- olan uçuşların sayısı
+SELECT F.Airline, COUNT(*) as Flight_count
+FROM FLIGHT as F, FLIGHT_LEG as FL
+WHERE ( 
+	FL.Departure_airport_code IN (
+		SELECT Airport_code
+		FROM AIRPORT
+		WHERE AIRPORT.Name = 'Adnan Menderes Havalimanı' )
+	OR FL.Arrival_airport_code IN (
+		SELECT Airport_code
+		FROM AIRPORT
+		WHERE AIRPORT.Name = 'Adnan Menderes Havalimanı' )
+)
+AND F.Flight_number = FL.Flight_no
+GROUP BY F.Airline
+ORDER BY COUNT(*) DESC
+
+
 --23. Planlanan havada kalma suresinden daha fazla surede ucusu tamamlayan ucuslar
 SELECT	LI.Flight_no,LI.Leg_no,LI.Date,(DATEDIFF(MINUTE,FL.Scheduled_departure_time,FL.Scheduled_arrival_time)) AS Planlanan_Ucus_Suresi,DATEDIFF(MINUTE,LI.Departure_time,LI.Arrival_time) AS Gerceklesen_Ucus_Suresi
 FROM	FLIGHT_LEG AS FL,LEG_INSTANCE AS LI
@@ -109,7 +129,7 @@ WITH IJ_FLIGHTS(Flight_no) AS
 	AND a1.City = 'İstanbul'
 	AND a2.State = 'Japan'
 )
-SELECT SEAT_RESERVATION.Customer_name 
+SELECT SEAT_RESERVATION.Customer_name, SEAT_RESERVATION.Customer_phone
 FROM SEAT_RESERVATION
 WHERE SEAT_RESERVATION.Customer_phone IN (
 
