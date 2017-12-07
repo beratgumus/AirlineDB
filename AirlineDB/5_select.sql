@@ -173,3 +173,19 @@ WHERE	 NOT EXISTS (SELECT	*
 				AND		LI.Arrival_airport_code is NOT NULL
 				AND		LI.Arrival_time is NOT NULL
 				);
+
+
+-- 5.d. Not Exist -- verilen havalimanında hiç uçuş yapmamış şirket
+SELECT FLIGHT.Airline
+FROM FLIGHT
+WHERE NOT EXISTS(
+	SELECT *
+	FROM AIRPORT as A, FLIGHT_LEG as FL, FLIGHT as F
+	WHERE A.Name = 'Adnan Menderes Havalimanı'
+	AND F.Flight_number = FL.Flight_no
+	and F.Airline = FLIGHT.Airline
+	AND (
+		FL.Arrival_airport_code = A.Airport_code
+		OR FL.Departure_airport_code = A.Airport_code
+	)
+)

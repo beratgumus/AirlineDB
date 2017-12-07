@@ -11,11 +11,11 @@
 8) AIRPLANE tablosundaki Total_number_of_seats AIRPLANE_TYPE tablosundaki Max_seats den büyük olmamalı
 
 ## Views
-1)~Aktarmali ucuslarin, ilk aktarmasinin kalkis tarihi ve saati ile son aktarmasinin inis tarihi ve saatini musterilere gostermek amaciyla view olusturma~
+1)~~Aktarmali ucuslarin, ilk aktarmasinin kalkis tarihi ve saati ile son aktarmasinin inis tarihi ve saatini musterilere gostermek amaciyla view olusturma~~
 
 ## SELECT
 
-1) ~~verilen bir havayolu şirketinin,yarım saatten fazla rotar yapan ucuslarında uçan yolcularının listesi~~(neden: hediye göndereceğiz :) )
+1) ~~Havayolu şirketlerinin,yarım saatten fazla rotar yapan ucuslarında uçan yolcularının listesi~~(neden: hediye göndereceğiz :) )
 2) ~~Adı verilen havaalanına inebilen uçakların listesi~~
 3) ~~Planlanan yerden farklı yere iniş yapan uçuşlar~~
 4) Kalkış yapmış fakat iniş yapmamış uçakların şirketi (2 tablo)
@@ -45,7 +45,7 @@
 2) FLIGHT_LEG tablosuna kilometre eklemek. (select 2)
 
 ## SELECT Yeniliklerimiz
-1) Daha önce hiç kaza yapmamış havayolu şirketleri (NOT EXIST, arrival_airport_code = null, bkz. model 1)
+1) ~~Daha önce hiç kaza yapmamış havayolu şirketleri (NOT EXIST, arrival_airport_code = null, bkz. model 1)~~
 2) 10000 km'den fazla uçmuş yolcuları bulan sql (yenilik 2)
 
 # What is left ?
@@ -58,9 +58,9 @@ relational model. You can select any of the DBMS you wish.~~
 4) ~~Write down 3 check constraints and~~ 3 assertions. ~~Check constraints and~~ assertions should be
 meaningful.
 5) Write down the following SQL statements:
-  a. Write sample INSERT, DELETE and UPDATE statements for 3 of the tables you have
+  a. Write sample ~~INSERT~~, DELETE and ~~UPDATE~~ statements for 3 of the tables you have
   chosen.<br>
-  b. Write 10 SELECT statements for the database you have implemented.<br>
+  ~~b. Write 10 SELECT statements for the database you have implemented.~~<br>
     i. ~~3 of them should use minimum 2 tables.~~         <strong> => 3,6,18,23  //1 extra queries, use them for another question</strong> <br> 
     ii. ~~4 of them should use minimum 3 tables.~~       <strong>=> 9,10,17,19 </strong><br> 
     iii. ~~3 of them should use minimum 4 tables.~~      <strong> => 1,2,24   </strong><br>
