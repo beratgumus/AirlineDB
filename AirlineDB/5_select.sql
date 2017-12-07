@@ -1,13 +1,15 @@
 ﻿USE Airline1
 GO
-
--- 1. Yarım saatten fazla rotar yapan ucusları bulan SQL
-SELECT FL.Flight_no, Leg_no, [Date],  Scheduled_departure_time, CAST(LI.Departure_time as TIME(0)) as Departure_time
-FROM FLIGHT_LEG as FL
-INNER JOIN LEG_INSTANCE as LI
-ON FL.Flight_no = LI.Flight_no
+-- 1. Yarım saatten fazla rotar yapan ucusların havayolu sirketini ve yolcularını bulan SQL
+SELECT FL.Flight_no, LI.Leg_no, LI.[Date],  Scheduled_departure_time, CAST(LI.Departure_time as TIME(0)) as Departure_time,Airline,Customer_name
+FROM FLIGHT_LEG as FL, LEG_INSTANCE as LI,FLIGHT,SEAT_RESERVATION as SR
+WHERE FL.Flight_no = LI.Flight_no
 AND FL.Leg_number = LI.Leg_no
-WHERE ( SELECT DATEDIFF(minute, CAST(LI.Date as DATETIME) + CAST(FL.Scheduled_departure_time as DATETIME), LI.Departure_time ) ) > 30;
+AND FL.Flight_no=FLIGHT.Flight_number
+AND	LI.Flight_no=SR.Flight_no
+AND	LI.Leg_no=SR.Leg_no
+AND	LI.Date=SR.Date
+AND ( SELECT DATEDIFF(minute, CAST(LI.Date as DATETIME) + CAST(FL.Scheduled_departure_time as DATETIME), LI.Departure_time ) ) > 30;
 
 
 -- 2. Adı verilen havaalanına inebilen uçakların listesi
