@@ -114,6 +114,21 @@ GROUP BY F.Airline
 ORDER BY COUNT(*) DESC
 
 
+--21. planlanan iniş havalimanından farklı havalimanına inen fakat inmesi normalde mümkün olmayan uçuşlar
+-- (uçuşda kullanılan uçakğın tipi ve indiği havalimanı can_land tablosunda yok fakat inmiş)
+SELECT LI.*
+FROM FLIGHT_LEG as FL, LEG_INSTANCE as LI
+WHERE FL.Flight_no = LI.Flight_no
+AND FL.Leg_number = LI.Leg_no
+AND FL.Arrival_airport_code != LI.Arrival_airport_code
+AND LI.Airplane_id NOT IN ( 
+	SELECT A.Airplane_id
+	FROM  AIRPLANE as A, CAN_LAND as CL
+	WHERE A.Airplane_type = CL.Airplane_type_name
+	AND CL.Airport_code = LI.Arrival_airport_code
+)
+
+
 --23. Planlanan havada kalma suresinden daha fazla surede ucusu tamamlayan ucuslar
 SELECT	LI.Flight_no,LI.Leg_no,LI.Date,(DATEDIFF(MINUTE,FL.Scheduled_departure_time,FL.Scheduled_arrival_time)) AS Planlanan_Ucus_Suresi,DATEDIFF(MINUTE,LI.Departure_time,LI.Arrival_time) AS Gerceklesen_Ucus_Suresi
 FROM	FLIGHT_LEG AS FL,LEG_INSTANCE AS LI

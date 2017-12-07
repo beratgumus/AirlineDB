@@ -35,7 +35,7 @@
 18) ~~Aktarmalı uçuşların listesi~~
 19) ~~izmirde 5den fazla uçuş yapmış şirketlerin listesi~~
 20) ~~havalimanını en çok kullanan şirketlerin listesi ( ORDER BY )~~
-21) planlanan iniş havalimanından farklı havalimanına inen fakat inmesi normalde mümkün olmayan uçuşlar
+21) ~~planlanan iniş havalimanından farklı havalimanına inen fakat inmesi normalde mümkün olmayan uçuşlar~~
 22) Kalktığı havalimanına geri dönen uçuşlar
 23) ~~Planlanan havada kalma suresinden daha az/fazla surede ucusu tamamlayan ucuslar~~
 24) ~~istanbul-japonya arası aktarmasız uçuşlardaki aynı telefon numarasına sahip müşterilerin adı~~
