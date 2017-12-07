@@ -60,9 +60,9 @@ meaningful.
   a. Write sample INSERT, DELETE and UPDATE statements for 3 of the tables you have
   chosen.<br>
   b. Write 10 SELECT statements for the database you have implemented.<br>
-    i. ~~3~~ of them should use minimum 2 tables.    => 1,3,6,18,2  //2 extra queries, try to extend it to use more tables or use them for another question <br> 
-    ii. ~~4~~1 of them should use minimum 3 tables.  => 9,17,19, <br> 
-    iii. ~~3~~2 of them should use minimum 4 tables.       => 2 <br>
+    i. ~~3~~ of them should use minimum 2 tables.         <strong> => 1,3,6,18,2  //2 extra queries, try to extend it to use more tables or use them for another question</strong> <br> 
+    ii. ~~4~~1 of them should use minimum 3 tables.       <strong>=> 9,17,19, </strong><br> 
+    iii. ~~3~~2 of them should use minimum 4 tables.      <strong> => 2   </strong><br>
   c. Write 4 SELECT statements to exemplify nested and/or correlated nested queries.<br>
   d. Write 2 SELECT statements to exemplify EXISTS and NOT EXISTS statements.<br>
   e. Write 3 SELECT statements to exemplify LEFT, RIGHT and FULL OUTER JOIN
