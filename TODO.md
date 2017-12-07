@@ -15,7 +15,7 @@
 
 ## SELECT
 
-1) ~~Yarım saatten fazla rotar yapan ucusları bulan SQL~~
+1) ~~verilen bir havayolu şirketinin,yarım saatten fazla rotar yapan ucuslarında uçan yolcularının listesi~~(neden: hediye göndereceğiz :) )
 2) ~~Adı verilen havaalanına inebilen uçakların listesi~~
 3) ~~Planlanan yerden farklı yere iniş yapan uçuşlar~~
 4) Kalkış yapmış fakat iniş yapmamış uçakların şirketi (2 tablo)
@@ -26,7 +26,7 @@
 9) ~~verilen bir havaalanında verilen tarihler arasında 5'den az uçuz yapmış şirketlerin isimleri~~
 10) ~~verilen bir havaalanına inebilecek uçakları alabildiği yolcu sayısına göre sıralayan sql~~
 11) verilen havaalanında 700 TLden pahallıya bilet satan havayolu şirketlerinin adı (exist, nested)
-12) verilen bir havayolu şirketinin, rötarlı uçuşlarında uçan yolcularının listesi(neden: hediye göndereceğiz :) )
+12) ~~1.query ile birlestirildi ~~
 13) verilen havayollarının pazartesi günü, öğlenden önce gerçekleştirdiği uçuşlar
 14) verilen bir havayolu şirketinin 5den fazla uçuş yapmış yolcuların listesi
 15) Flight_number, Leg_number ve Date'i verilen uçuştaki adı "X" olan yolcunun telefon numarası
@@ -61,8 +61,8 @@ meaningful.
   a. Write sample INSERT, DELETE and UPDATE statements for 3 of the tables you have
   chosen.<br>
   b. Write 10 SELECT statements for the database you have implemented.<br>
-    i. ~~3 of them should use minimum 2 tables.~~         <strong> => 3,6,18,2  //1 extra queries, use them for another question</strong> <br> 
-    ii. ~~4 of them should use minimum 3 tables.~~       <strong>=> 9,10,17,19, </strong><br> 
+    i. ~~3 of them should use minimum 2 tables.~~         <strong> => 3,6,18,23  //1 extra queries, use them for another question</strong> <br> 
+    ii. ~~4 of them should use minimum 3 tables.~~       <strong>=> 9,10,17,19 </strong><br> 
     iii. ~~3 of them should use minimum 4 tables.~~      <strong> => 1,2,24   </strong><br>
   c. Write 4 SELECT statements to exemplify nested and/or correlated nested queries.<br>
   d. ~~Write 2 SELECT statements to exemplify EXISTS and NOT EXISTS statements.~~<br>
