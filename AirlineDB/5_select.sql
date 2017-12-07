@@ -124,3 +124,24 @@ WHERE SEAT_RESERVATION.Customer_phone IN (
 	GROUP BY SR.Customer_phone
 	HAVING COUNT(*) > 1
 );
+
+
+
+-- 5.d. Exists -- Max_seats i 200 den buyuk olan ucaklar
+SELECT *
+FROM	AIRPLANE
+WHERE	EXISTS (SELECT	*
+				FROM	AIRPLANE_TYPE
+				WHERE	AIRPLANE.Airplane_type=AIRPLANE_TYPE.Airplane_type_name
+				AND		Max_seats >200
+				);
+
+-- 5.d. Not Exists -- Kaza yapmis ucuslarin listesi
+SELECT *
+FROM	LEG_INSTANCE as LI
+WHERE	 NOT EXISTS (SELECT	*
+				FROM	FLIGHT_LEG as FL
+				WHERE	LI.Flight_no=Flight_no
+				AND		LI.Leg_no=FL.Leg_number
+				AND		LI.Arrival_airport_code is NOT NULL
+				);
