@@ -39,7 +39,7 @@
 22) Kalktığı havalimanına geri dönen uçuşlar
 23) ~~Planlanan havada kalma suresinden daha az/fazla surede ucusu tamamlayan ucuslar~~
 24) ~~istanbul-japonya arası aktarmasız uçuşlardaki aynı telefon numarasına sahip müşterilerin adı~~
-25)~~Kaza yapmis ucuslarin listesi~~
+25) ~~Kaza yapmis ucuslarin listesi~~
 ## Yeniliklerimiz
 1) Arrival_airport_code NULL olabilir > uçak kalkış yapmış ama havaalanına inmemiş (kaza yapma durumu) ;)
 2) FLIGHT_LEG tablosuna kilometre eklemek. (select 2)
