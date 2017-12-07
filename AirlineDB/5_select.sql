@@ -30,14 +30,6 @@ WHERE	(FL.Flight_no=LI.Flight_no AND FL.Leg_number = LI.Leg_no)
 		OR (FL.Departure_airport_code != LI.Departure_airport_code));
 		
 
--- 6) Tamamlanmış uçuşların boş koltuk sayısı %50den fazla olanları bulan sql
-SELECT Flight_no, Leg_no, [Date], Number_of_available_seats, Total_number_of_seats, CAST(Number_of_available_seats * 100 as float) / CAST(Total_number_of_seats as float) as Rate
-FROM LEG_INSTANCE as LI, AIRPLANE as A
-WHERE LI.Arrival_time IS NOT NULL
-AND LI.Airplane_id = A.Airplane_id
-AND (CAST(Number_of_available_seats * 100 as float) / CAST(Total_number_of_seats as float) ) > 50;
-
-
 -- 9) verilen bir havaalanında, verilen tarihden sonra, 5'den az uçuş yapmış şirketlerin isimleri
 SELECT *
 FROM (
