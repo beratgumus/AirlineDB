@@ -11,7 +11,8 @@
 8) AIRPLANE tablosundaki Total_number_of_seats AIRPLANE_TYPE tablosundaki Max_seats den büyük olmamalı
 
 ## Views
-1)~~Aktarmali ucuslarin, ilk aktarmasinin kalkis tarihi ve saati ile son aktarmasinin inis tarihi ve saatini musterilere gostermek amaciyla view olusturma~~
+1) ~~Aktarmali ve aktarmasiz tum ucuslarin, ilk aktarmasinin kalkis tarihi ve saati ile son aktarmasinin inis tarihi ve saatinin musterilere gostermek amaciyla view olusturma~~
+2) ~~Tamamlanmis uçuslarin bos koltuk sayisi %50den fazla olanlari bulan view~~
 
 ## SELECT
 
@@ -54,7 +55,7 @@ relational model. You can select any of the DBMS you wish.~~
 2) ~~Populate the database you just created again using SQL script file loaded with sample tuples.
 (The tables should have enough number of tuples for the SELECT statements, asked in the
 5th step, to be run accordingly.)~~
-3) Write down 3 triggers for 3 different tables. Triggers should be meaningful. <strong> => 2 of the 3 triggers are written for the same table !</strong>
+3) ~~Write down 3 triggers for 3 different tables. Triggers should be meaningful.~~ <strong> => we have 1 extra trigger, count it for assertion ??? !</strong>
 4) ~~Write down 3 check constraints and~~ 3 assertions. ~~Check constraints and~~ assertions should be
 meaningful.
 5) Write down the following SQL statements:
