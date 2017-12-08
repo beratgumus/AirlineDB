@@ -1,13 +1,13 @@
---Aktarmali ucuslarin, ilk aktarmasinin kalkis tarihi ve saati ile son aktarmasinin inis tarihi ve saatinin musterilere gostermek amaciyla view olusturma icin yazilan sql
+--Aktarmali ve aktarmasiz tum ucuslarin, ilk aktarmasinin kalkis tarihi ve saati ile son aktarmasinin inis tarihi ve saatinin musterilere gostermek amaciyla view olusturma icin yazilan sql
 -- Artik aktarma sayisi ne olursa olsun calisiyor...
 
 USE Airline1
 GO
 CREATE VIEW VW_firstDeparture_lastArrival_of_connectingFlights
-AS
+as
 
-SELECT	first_leg.Flight_no,first_leg.Departure_date,first_leg.Scheduled_departure_time,last_leg.Arrival_date,last_leg.Scheduled_arrival_time 
-FROM
+WITH first_leg(Flight_no,Departure_date,Scheduled_departure_time)
+AS
 (
 	SELECT Start_leg.Flight_no, Start_leg.Date as Departure_date,FLIGHT_LEG.Scheduled_departure_time
 	FROM LEG_INSTANCE as Start_leg,FLIGHT_LEG
@@ -24,8 +24,7 @@ FROM
 							FROM FLIGHT_LEG
 							WHERE FLIGHT_LEG.Flight_no = Start_leg.Flight_no
 							)
-) as first_leg
-,
+), last_leg(Flight_no,Arrival_date,Scheduled_arrival_time) as
 (
 	SELECT End_leg.Flight_no,(CAST(End_leg.Arrival_time as DATE)) as Arrival_date,FLIGHT_LEG.Scheduled_arrival_time
 	FROM LEG_INSTANCE as End_leg,FLIGHT_LEG
@@ -42,5 +41,21 @@ FROM
 							FROM FLIGHT_LEG
 							WHERE FLIGHT_LEG.Flight_no = End_leg.Flight_no
 							)
-) as last_leg
+), connecting_flight(Flight_no,Departure_date,Scheduled_departure_time,Arrival_date,Scheduled_arrival_time) as
+
+(
+SELECT	first_leg.Flight_no,Departure_date,Scheduled_departure_time,Arrival_date,Scheduled_arrival_time
+FROM	first_leg,last_leg
 where first_leg.Flight_no = last_leg.Flight_no
+)
+
+
+
+(SELECT LI.Flight_no,Date as Departure_date,F.Scheduled_departure_time,(CAST(LI.Arrival_time as DATE)) as Arrival_date,F.Scheduled_arrival_time
+FROM	LEG_INSTANCE as LI,FLIGHT_LEG as F,connecting_flight as CF
+WHERE	LI.Flight_no=F.Flight_no
+AND		LI.Flight_no != CF.Flight_no)
+UNION
+(SELECT	*
+FROM connecting_flight
+)
