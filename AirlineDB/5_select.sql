@@ -196,4 +196,31 @@ FROM AIRPORT as A
 LEFT JOIN LEG_INSTANCE as LI
 ON A.Airport_code = LI.Departure_airport_code
 GROUP BY A.Airport_code
-ORDER BY COUNT(LI.Flight_no) DESC
+ORDER BY COUNT(LI.Flight_no) DESC;
+
+
+-- 5.e FULL OUTER JOIN -- Havaalanında yapılan toplam iniş-kalkış sayısı
+-- *Neden FULL OUTER JOIN?* 
+--     Eğer bir havaalanından hiç kalkış olmamışsa (mesela Dep_airport_code'da hiç XXX
+-- havaalanı yoksa) geçici DEP_COUNTS tablosunda o havalanı bulunmayacaktır. 
+-- Aynısı ARR_COUNTS için de geçerlidir. Her iki geçici tabloda da bazı havaalanları
+-- olmayabileceği için FULL OUTER JOIN ile birleştirilmiştir.
+WITH DEP_COUNTS(Airport_code, Departure_count) AS -- havaalanından kalkan uçuşları tutan tablo
+(
+	SELECT a.Airport_code, COUNT(*) as Departure_count
+	FROM AIRPORT as A, LEG_INSTANCE as LI
+	WHERE a.Airport_code = LI.Departure_airport_code
+	GROUP BY a.Airport_code
+), ARR_COUNTS(Airport_code, Arrival_count) AS -- havaalanına inen uçuşları tutan tablo
+(
+	SELECT a.Airport_code, COUNT(*) as Arrival_count
+	FROM AIRPORT as A, LEG_INSTANCE as LI
+	WHERE a.Airport_code = LI.Arrival_airport_code
+	GROUP BY a.Airport_code
+)
+SELECT IsNull(DC.Airport_code, AC.Airport_code) as Airport_code, -- DC tablosunda yoksa AC dekini al
+	IsNull(AC.Arrival_count,0) + IsNull(DC.Departure_count,0) as Total_usage
+FROM DEP_COUNTS as DC
+FULL OUTER JOIN ARR_COUNTS as AC
+ON AC.Airport_code = DC.Airport_code
+ORDER BY IsNull(DC.Departure_count,0) + IsNull(AC.Arrival_count,0) DESC;
