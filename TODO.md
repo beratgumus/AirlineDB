@@ -66,7 +66,7 @@ meaningful.
     iii. ~~3 of them should use minimum 4 tables.~~      <strong> => 1,2,24   </strong><br>
   c. Write ~~4~~1 SELECT statements to exemplify nested and/or correlated nested queries.  <strong> =>20,21,25   </strong><br><br>
   d. ~~Write 2 SELECT statements to exemplify EXISTS and NOT EXISTS statements.~~<br>
-  e. Write 3 SELECT statements to exemplify LEFT, RIGHT and FULL OUTER JOIN
+  e. Write 3 SELECT statements to exemplify ~~LEFT~~, RIGHT and FULL OUTER JOIN
   statements.
 6) Create ~~3~~1 views that are reasonable.
 

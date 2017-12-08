@@ -189,3 +189,11 @@ WHERE NOT EXISTS(
 		OR FL.Departure_airport_code = A.Airport_code
 	)
 )
+
+-- 5.e LEFT JOIN -- havaalanlarından yapılmış (kalkış) uçuş sayıları
+SELECT A.Airport_code, COUNT(LI.Flight_no) as Departure_count
+FROM AIRPORT as A
+LEFT JOIN LEG_INSTANCE as LI
+ON A.Airport_code = LI.Departure_airport_code
+GROUP BY A.Airport_code
+ORDER BY COUNT(LI.Flight_no) DESC
