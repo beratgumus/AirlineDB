@@ -18,7 +18,7 @@ VALUES
 (6, 'Alamet Havayolları', '1'), -- istanbul -> ankara
 (7, 'Alamet Havayolları', '2'), -- izmir -> istanbul
 (8, 'Türk Hava Yolları', '1,2,3,4,5,6,7'), -- izmir -> ankara
-(9, 'United Airlines', '1,5'); -- japonya -> londra
+(9, 'Unified Airlines', '1,5'); -- japonya -> londra
 
 
 INSERT INTO FLIGHT_LEG (Flight_no, Leg_number, Departure_airport_code, Scheduled_departure_time,
@@ -69,17 +69,17 @@ VALUES
 
 INSERT INTO AIRPLANE (Airplane_id, Total_number_of_seats, Airplane_type)
 VALUES
-(1, 150, 'Airbus A320-200'),
-(2, 188, 'Airbus A321-200'),
-(3, 179, 'Airbus A321-200'),
-(4, 165, 'Boeing 737-800'),
-(5, 245, 'Airbus A330-200'),
-(6, 165, 'Boeing 737-800'),
-(7, 151, 'Boeing 737-900ER'),
-(8, 149, 'Boeing 737-900ER'),
-(9, 153, 'Airbus A320-200'),
-(10, 250, 'Airbus A330-200'),
-(11, 70, 'Bombardier CRJ700'); -- United Airlines'ın uçağı
+('THY111', 150, 'Airbus A320-200'),
+('THY222', 188, 'Airbus A321-200'),
+('THY333', 179, 'Airbus A321-200'),
+('THY444', 165, 'Boeing 737-800'),
+('THY555', 245, 'Airbus A330-200'),
+('XXX666', 165, 'Boeing 737-800'),
+('XXX777', 151, 'Boeing 737-900ER'),
+('XXX888', 149, 'Boeing 737-900ER'),
+('ALA999', 153, 'Airbus A320-200'),
+('XXX101', 250, 'Airbus A330-200'),
+('UNAFFF', 70, 'Bombardier CRJ700');
 
 
 INSERT INTO CAN_LAND (Airplane_type_name, Airport_code)
@@ -116,44 +116,44 @@ VALUES
 INSERT INTO LEG_INSTANCE(Flight_no,Leg_no,Date,Number_of_available_seats,Airplane_id,Departure_airport_code,
 	Departure_time,Arrival_airport_code,Arrival_time)
 VALUES
-(1,1,'2017-11-13',15,1,'ADB','2017-11-13 21:53','IST','2017-11-13 23:04'), -- Planlanan havada kalma suresinden daha az surede ucusu tamamladi, -4 dk
-(1,1,'2017-11-14',17,1,'ADB','2017-11-14 21:50','IST','2017-11-14 23:05'), -- Rotarsiz, tam zamanlama
-(1,1,'2017-11-15',22,4,'ADB','2017-11-15 22:22','IST','2017-11-15 23:34'), -- 32 dk Rotarli
-(2,1,'2017-11-13',14,1,'ADB','2017-11-13 10:51','IST','2017-11-13 12:20'), -- Planlanan havada kalma suresinden daha fazla surede ucusu tamamladi, +9 dk
-(2,1,'2017-11-15',100,4,'ADB','2017-11-15 10:50','IST','2017-11-15 12:10'),  -- Doluluk orani %50 den az
-(3,1,'2017-11-14',6,3,'IST','2017-11-14 12:15','ADB','2017-11-14 13:00'),
-(3,1,'2017-11-15',7,4,'IST','2017-11-15 12:18','ADB','2017-11-15 13:07'),
-(4,1,'2017-11-13',11,5,'IST','2017-11-13 02:28','NRT','2017-11-13 20:10'), -- Uluslar arasi ucus
-(4,1,'2017-10-22',1,1,'IST','2017-10-22 03:34','NRT','2017-10-22 23:58'),
-(4,1,'2017-11-17',6,5,'IST','2017-11-17 02:17','NRT','2017-11-17 19:58'),
-(5,1,'2017-11-17',6,5,'ADB','2017-11-17 21:50','IST','2017-11-17 23:05'),  -- izmir -> tokyo part1
-(5,2,'2017-11-18',13,5,'IST','2017-11-18 02:19','NRT','2017-11-18 19:59'), -- izmir -> tokyo part2, +1
-(6,1,'2023-11-18',153,9,'IST',null, null, null), -- alamet havayolları
-(7,1,'2023-11-18',153,9,'ADB', null, null, null),
-(2,1,'2017-11-14',17,1,'ADB','2017-11-14 10:51','ESB','2017-11-14 12:40'), -- Planlanan yerden farkli havaalanina inen ucus -- IST yerine ESB ye iniyor
-(2,1,'2017-11-21',0,5,'ADB','2017-11-21 10:50','ESB','2017-11-21 13:13'), -- Planlanan yerden farkli havaalanina inen fakat normalde inememesi gereken uçuş
-(9,1,'2017-11-22',6,11,'NRT','2017-11-22 05:02', 'YXU', '2017-11-23 00:12');
+(1,1,'2017-11-13',15,	'THY111','ADB','2017-11-13 21:53','IST','2017-11-13 23:04'), -- Planlanan havada kalma suresinden daha az surede ucusu tamamladi, -4 dk
+(1,1,'2017-11-14',17,	'THY111','ADB','2017-11-14 21:50','IST','2017-11-14 23:05'), -- Rotarsiz, tam zamanlama
+(1,1,'2017-11-15',22,	'THY444','ADB','2017-11-15 22:22','IST','2017-11-15 23:34'), -- 32 dk Rotarli
+(2,1,'2017-11-13',14,	'THY111','ADB','2017-11-13 10:51','IST','2017-11-13 12:20'), -- Planlanan havada kalma suresinden daha fazla surede ucusu tamamladi, +9 dk
+(2,1,'2017-11-15',100,	'THY444','ADB','2017-11-15 10:50','IST','2017-11-15 12:10'),  -- Doluluk orani %50 den az
+(3,1,'2017-11-14',6,	'THY333','IST','2017-11-14 12:15','ADB','2017-11-14 13:00'),
+(3,1,'2017-11-15',7,	'THY444','IST','2017-11-15 12:18','ADB','2017-11-15 13:07'),
+(4,1,'2017-11-13',11,	'THY555','IST','2017-11-13 02:28','NRT','2017-11-13 20:10'), -- Uluslar arasi ucus
+(4,1,'2017-10-22',1,	'THY111','IST','2017-10-22 03:34','NRT','2017-10-22 23:58'),
+(4,1,'2017-11-17',6,	'THY555','IST','2017-11-17 02:17','NRT','2017-11-17 19:58'),
+(5,1,'2017-11-17',6,	'THY555','ADB','2017-11-17 21:50','IST','2017-11-17 23:05'),  -- izmir -> tokyo part1
+(5,2,'2017-11-18',13,	'THY555','IST','2017-11-18 02:19','NRT','2017-11-18 19:59'), -- izmir -> tokyo part2, +1
+(6,1,'2023-11-18',153,	'ALA999','IST', null, null, null), -- alamet havayolları
+(7,1,'2023-11-18',153,	'ALA999','ADB', null, null, null),
+(2,1,'2017-11-14',17,	'THY111','ADB','2017-11-14 10:51','ESB','2017-11-14 12:40'), -- Planlanan yerden farkli havaalanina inen ucus -- IST yerine ESB ye iniyor
+(2,1,'2017-11-21',0,	'THY555','ADB','2017-11-21 10:50','ESB','2017-11-21 13:13'), -- Planlanan yerden farkli havaalanina inen fakat normalde inememesi gereken uçuş
+(9,1,'2017-11-22',6,	'UNAFFF','NRT','2017-11-22 05:02','YXU','2017-11-23 00:12');
 
 INSERT INTO SEAT_RESERVATION (Flight_no, Leg_no, Date, Seat_number, Customer_name, Customer_phone)
 VALUES
-(1, 1, '2017-11-13', 1, 'Mehmet Okumuş', '+905551112222'),
-(1, 1, '2017-11-13', 2, 'Melis Okumuş', '+905001002000'),
-(1, 1, '2017-11-13', 3, 'Sema Okumamış ', '+905001502002'),
-(1, 1, '2017-11-13', 4, 'Tarkan Altınbaş', '+905531119090'),
-(1, 1, '2017-11-13', 5, 'Tuncay Şanlı', '+905119897777'),
-(1, 1, '2017-11-15', 1, 'Merve Konuk', '+905108889999'),
-(1, 1, '2017-11-15', 2, 'Burcu Gün', '+905001002001'),
-(3, 1, '2017-11-14', 1, 'Mehmet Okumuş', '+905551112222'),
-(3, 1, '2017-11-14', 2, 'Melis Okumuş', '+905001002000'),
-(3, 1, '2017-11-14', 3, 'Tarkan Altınbaş', '+905536669090'),
-(4, 1, '2017-10-22', 1, 'Melis Elibol', '+812083438802'),
-(4, 1, '2017-10-22', 2, 'Hiroto Miyamoto', '+812083438662'),
-(4, 1, '2017-11-13', 1, 'Canberk Kara', '+9055612345678'),
-(4, 1, '2017-11-13', 2, 'Hosuzu Miyamoto', '+812055558801'),
-(4, 1, '2017-11-13', 3, 'Asuka Miyamoto', '+812055558801'),
-(4, 1, '2017-11-13', 4, 'Mert Akıncılar', '+905519890012'),
-(4, 1, '2017-11-13', 5, 'Rana Altıparmak', '+905519890012'),
-(5, 2, '2017-11-18', 14, 'Selim Gezgin', '+905532221144'),
-(9, 1, '2017-11-22', 1, 'Tetsushou Fukui', '+15415454908'),
-(9, 1, '2017-11-22', 2, 'Hiroto Miyamoto', '+812083438662'),
-(9, 1, '2017-11-22', 3, 'Lisa L. Smith', '+16415524531');
+(1, 1, '2017-11-13', 1, 'Mehmet Okumuş',	'+905551112222'),
+(1, 1, '2017-11-13', 2, 'Melis Okumuş',		'+905001002000'),
+(1, 1, '2017-11-13', 3, 'Sema Okumamış ',	'+905001502002'),
+(1, 1, '2017-11-13', 4, 'Tarkan Altınbaş',	'+905531119090'),
+(1, 1, '2017-11-13', 5, 'Tuncay Şanlı',		'+905119897777'),
+(1, 1, '2017-11-15', 1, 'Merve Konuk',		'+905108889999'),
+(1, 1, '2017-11-15', 2, 'Burcu Gün',		'+905001002001'),
+(3, 1, '2017-11-14', 1, 'Mehmet Okumuş',	'+905551112222'),
+(3, 1, '2017-11-14', 2, 'Melis Okumuş',		'+905001002000'),
+(3, 1, '2017-11-14', 3, 'Tarkan Altınbaş',	'+905536669090'),
+(4, 1, '2017-10-22', 1, 'Melis Elibol',		'+812083438802'),
+(4, 1, '2017-10-22', 2, 'Hiroto Miyamoto',	'+812083438662'),
+(4, 1, '2017-11-13', 1, 'Canberk Kara',		'+9055612345678'),
+(4, 1, '2017-11-13', 2, 'Hosuzu Miyamoto',	'+812055558801'),
+(4, 1, '2017-11-13', 3, 'Asuka Miyamoto',	'+812055558801'),
+(4, 1, '2017-11-13', 4, 'Mert Akıncılar',	'+905519890012'),
+(4, 1, '2017-11-13', 5, 'Rana Altıparmak',	'+905519890012'),
+(5, 2, '2017-11-18', 14, 'Selim Gezgin',	'+905532221144'),
+(9, 1, '2017-11-22', 1, 'Tetsushou Fukui',	'+15415454908'),
+(9, 1, '2017-11-22', 2, 'Hiroto Miyamoto',	'+812083438662'),
+(9, 1, '2017-11-22', 3, 'Lisa L. Smith',	'+16415524531');

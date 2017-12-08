@@ -59,7 +59,7 @@ CREATE TABLE AIRPLANE_TYPE (
 );
 
 CREATE TABLE AIRPLANE (
-	[Airplane_id] INT NOT NULL,
+	[Airplane_id] NVARCHAR(8) NOT NULL,
 	[Total_number_of_seats] INT NOT NULL,
 	[Airplane_type] NVARCHAR(255) NOT NULL,
 	CONSTRAINT PK_airplane PRIMARY KEY (Airplane_id),
@@ -71,7 +71,7 @@ CREATE TABLE LEG_INSTANCE (
 	[Leg_no] INT NOT NULL,
 	[Date] DATE NOT NULL,
 	[Number_of_available_seats] INT NOT NULL,
-	[Airplane_id] INT NOT NULL,
+	[Airplane_id] NVARCHAR(8) NOT NULL,
 	[Departure_airport_code] CHAR(3) NOT NULL,
 	[Departure_time] SMALLDATETIME ,
 	[Arrival_airport_code] CHAR(3),
