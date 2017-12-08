@@ -23,11 +23,11 @@ BEGIN
 	DECLARE @instance_seats int
 	SET @instance_seats = 
 	(
-		SELECT MAX(inserted.Number_of_available_seats)
+		SELECT inserted.Number_of_available_seats
 		FROM inserted
 	)
 
-	IF( @max > 15 )
+	IF( @max > @instance_seats )
 		INSERT INTO LEG_INSTANCE
 		SELECT * FROM inserted
 	ELSE
