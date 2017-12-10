@@ -1,4 +1,4 @@
---Tamamlanm?? uçu?lar?n bo? koltuk say?s? %50den fazla olanlar? bulan view
+--Tamamlanmis uçuslarin bos koltuk sayisi %50den fazla olanlari bulan view
 use Airline1
 GO
 

@@ -29,6 +29,18 @@ WHERE	(FL.Flight_no=LI.Flight_no AND FL.Leg_number = LI.Leg_no)
 		AND ((FL.Arrival_airport_code != LI.Arrival_airport_code )
 		OR (FL.Departure_airport_code != LI.Departure_airport_code));
 		
+-- 4+5.Kalkis yapmis fakat inis yapmamis ucaklarin, havayolu sirketine gore sayilari
+SELECT	Airline,COUNT(*) as Number_of_Flights_on_Air
+FROM	FLIGHT as F, FLIGHT_LEG as FL
+WHERE	F.Flight_number=FL.Flight_no
+AND		F.Flight_number in(
+							SELECT	Flight_no
+							FROM	LEG_INSTANCE as LI
+							WHERE	LI.Arrival_airport_code is  NULL
+							AND		LI.Arrival_time is  NULL
+							AND		LI.Departure_airport_code is NOT NULL
+							AND		LI.Departure_time is NOT NULL)
+Group by Airline
 
 -- 9) verilen bir havaalanında, verilen tarihden sonra, 5'den az uçuş yapmış şirketlerin isimleri
 SELECT *

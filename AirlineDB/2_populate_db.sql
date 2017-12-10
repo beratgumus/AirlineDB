@@ -129,7 +129,7 @@ VALUES
 (5,1,'2017-11-17',6,	'THY555','ADB','2017-11-17 21:50','IST','2017-11-17 23:05'),  -- izmir -> tokyo part1
 (5,2,'2017-11-18',13,	'THY555','IST','2017-11-18 02:19','NRT','2017-11-18 19:59'), -- izmir -> tokyo part2, +1
 (6,1,'2023-11-18',153,	'ALA999','IST', null, null, null), -- alamet havayolları
-(7,1,'2023-11-18',153,	'ALA999','ADB', null, null, null),
+(7,1,'2017-12-28',153,	'ALA999','ADB', '2017-12-28 17:12', null, null),			 --Havada olan,henuz inis yapmamis ucus
 (2,1,'2017-11-14',17,	'THY111','ADB','2017-11-14 10:51','ESB','2017-11-14 12:40'), -- Planlanan yerden farkli havaalanina inen ucus -- IST yerine ESB ye iniyor
 (2,1,'2017-11-21',0,	'THY555','ADB','2017-11-21 10:50','ESB','2017-11-21 13:13'), -- Planlanan yerden farkli havaalanina inen fakat normalde inememesi gereken uçuş
 (9,1,'2017-11-22',6,	'UNAFFF','NRT','2017-11-22 05:02','YXU','2017-11-23 00:12');
