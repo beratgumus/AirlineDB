@@ -69,7 +69,7 @@ meaningful.
   d. ~~Write 2 SELECT statements to exemplify EXISTS and NOT EXISTS statements.~~<br>
   e. Write 3 SELECT statements to exemplify ~~LEFT~~, RIGHT and ~~FULL OUTER JOIN~~
   statements.
-6) Create ~~3~~1 views that are reasonable.
+6) ~~Create 3 views that are reasonable.~~
 
 
 
