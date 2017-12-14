@@ -2,17 +2,17 @@
 
 ## check, tirgger, assertion
 1) ~~Total_number_of_seats , max_seatsdan fazla olamaz.~~
-2) number_of_available_seats , total_number_of_seatsden büyük olmamalı
-3) LEG_INSTANCE'ye veri eklerken eklenen uçağın varış havaalanına inip inemeyeceğini kontrol etmeliyiz (3tablo)
+2) ~~AIRPLANE tablosundaki Total_number_of_seats AIRPLANE_TYPE tablosundaki Max_seats den büyük olmamalı~~
+3) ~~LEG_INSTANCE'ye veri eklerken eklenen uçağın varış havaalanına inip inemeyeceğini kontrol etmeliyiz (3tablo)~~
 4) LEG_INSTANCE'ye veri eklerken Departure_time FLIGHT_LEG'deki Scheduled_departure_time'dan küçük olmamalı
 5) ~~Koltuk rezervasyonu yapıldıgı zaman,Leg Instance ta bulunan number of available seats sahasının degerını azalt~~
 6) ~~Seat Reservation yapmadan önce available seatsin 0 dan büyük olup olmadıgını kontrol et~~
 7) Aktarmalı uçuşlar arasında, önceki uçuşun iniş tarihi ve saatinden önce diğer aktarmalı uçak kalkış yapmamalı
-8) AIRPLANE tablosundaki Total_number_of_seats AIRPLANE_TYPE tablosundaki Max_seats den büyük olmamalı
 
 ## Views
 1) ~~Aktarmali ve aktarmasiz tum ucuslarin, ilk aktarmasinin kalkis tarihi ve saati ile son aktarmasinin inis tarihi ve saatinin musterilere gostermek amaciyla view olusturma~~
 2) ~~Tamamlanmis uçuslarin bos koltuk sayisi %50den fazla olanlari bulan view~~
+3) ~~Havalanlarının kullanım sıklıklarını gösteren view~~
 
 ## SELECT
 
@@ -21,7 +21,7 @@
 3) ~~Planlanan yerden farklı yere iniş yapan uçuşlar~~
 4) ~~Kalkış yapmış fakat iniş yapmamış uçakların şirketi (2 tablo)~~
 5) ~~Kalkış yapmış fakat iniş yapmamış uçakların sayısı~~
-6) leg_instance da tamamlanmış uçuşların available seats sayısı %50den fazla olanları bulan sql + sabah1)akşam
+6) ~~leg_instance da tamamlanmış uçuşların available seats sayısı %50den fazla olanları bulan sql~~
 7) şehirlere göre yoğunlu|uçuş sayısını gösteren sql
 8) verilen bir şehirdeki, verilen tarihler arasında 10'den az uçuş gerçekleşmiş havaalanına
 9) ~~verilen bir havaalanında verilen tarihler arasında 5'den az uçuz yapmış şirketlerin isimleri~~
