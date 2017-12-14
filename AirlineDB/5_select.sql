@@ -51,7 +51,7 @@ FROM (
 		AND LEG_INSTANCE.Departure_airport_code = AIRPORT.Airport_code
 		AND FLIGHT.Flight_number = LEG_INSTANCE.Flight_no
 		AND LEG_INSTANCE.Date > CAST('2015.01.01' AS DATE)
-		--AND LEG_INSTANCE.Date < CAST(GETDATE() AS DATE) --yapMIŞ dediği için
+		--AND LEG_INSTANCE.Date IS NOT NULL) --yapMIŞ dediği için
 		GROUP BY FLIGHT.Airline
 	) RESULT
 WHERE RESULT.Flight_count < 5;

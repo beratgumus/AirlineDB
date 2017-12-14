@@ -84,7 +84,7 @@ VALUES
 
 INSERT INTO CAN_LAND (Airplane_type_name, Airport_code)
 VALUES
-('Airbus A320-200', 'ADB'), -- Airbus A320-200
+('Airbus A320-200', 'ADB'), -- Airbus A320-200 | yurt içi
 ('Airbus A320-200', 'IST'),
 ('Airbus A320-200', 'ESB'),
 ('Airbus A321-200', 'ADB'), -- Airbus A321-200 | tüm havaalanları
