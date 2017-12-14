@@ -4,6 +4,10 @@
 -- Toplu eklemeleri bu trigger'i oluşturmadan önce yapınız.
 USE Airline1
 GO
+
+DROP TRIGGER IF EXISTS [dbo].[TRG_control_availability]
+GO
+
 CREATE TRIGGER TRG_control_availability
         ON SEAT_RESERVATION
         INSTEAD OF INSERT

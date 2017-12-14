@@ -1,6 +1,10 @@
 ﻿-- yeni bilet alındığında satın alınabilen koltuk sayısını düşürelim
 USE Airline1
 GO
+
+DROP TRIGGER IF EXISTS [dbo].[TRG_decrease_available_seats]
+GO
+
 CREATE TRIGGER TRG_decrease_available_seats
         ON SEAT_RESERVATION
         AFTER INSERT

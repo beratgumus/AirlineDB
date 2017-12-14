@@ -4,6 +4,9 @@
 USE Airline1
 GO
 
+DROP TRIGGER IF EXISTS [dbo].[TRG_control_max_seats]
+GO
+
 CREATE TRIGGER TRG_control_max_seats
         ON AIRPLANE
         INSTEAD OF INSERT
