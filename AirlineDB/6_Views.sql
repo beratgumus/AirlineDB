@@ -3,8 +3,12 @@
 
 USE Airline1
 GO
-CREATE VIEW VW_firstDeparture_lastArrival_of_connectingFlights
-as
+
+DROP VIEW IF EXISTS [dbo].[VW_Flights]
+GO
+
+CREATE VIEW VW_Flights
+AS
 
 WITH first_leg(Flight_no,Departure_date,Scheduled_departure_time)
 AS
