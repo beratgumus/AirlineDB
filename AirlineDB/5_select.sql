@@ -21,13 +21,13 @@ AND CAN_LAND.Airplane_type_name = AIRPLANE_TYPE.Airplane_type_name
 AND AIRPLANE_TYPE.Airplane_type_name = AIRPLANE.Airplane_type;
 
 
--- 3. Planlanan yerden farklı yere iniş ya da farkli yerden kalkis yapan uçuşlar
+-- 3. Planlanan yerden farklı yere iniş yapan uçuşlar
 USE Airline1
 SELECT	*
 FROM FLIGHT_LEG as FL, LEG_INSTANCE as LI
-WHERE	(FL.Flight_no=LI.Flight_no AND FL.Leg_number = LI.Leg_no)
-		AND ((FL.Arrival_airport_code != LI.Arrival_airport_code )
-		OR (FL.Departure_airport_code != LI.Departure_airport_code));
+WHERE FL.Flight_no = LI.Flight_no 
+AND FL.Leg_number = LI.Leg_no
+AND FL.Arrival_airport_code != LI.Arrival_airport_code ;
 		
 -- 4+5.Kalkis yapmis fakat inis yapmamis ucaklarin, havayolu sirketine gore sayilari
 SELECT	Airline,COUNT(*) as Number_of_Flights_on_Air
