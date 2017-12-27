@@ -307,3 +307,4 @@ OpenCover/
 AirlineDB.ssmssln
 AirlineDB/AirlineDB.ssmssqlproj
 AirlineDB2/AirlineDB2.ssmssqlproj
+*.ssmssqlproj
