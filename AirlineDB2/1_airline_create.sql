@@ -1,6 +1,7 @@
 USE master
 
-DROP DATABASE IF EXISTS Airline2
+IF EXISTS(select * from sys.databases where name='Airline2')
+DROP DATABASE Airline2
 GO
 
 CREATE DATABASE Airline2
