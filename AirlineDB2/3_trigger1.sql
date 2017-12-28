@@ -23,7 +23,7 @@ BEGIN
 		INSERT INTO FLIGHT
 		SELECT * FROM inserted;
 	ELSE
-		RAISERROR('You cant select an airplane company for flights. Select an airline company instead.', 16, 1)
-		--PRINT 'You cant select an airplane company for flights. Select an airline company instead.';
+		--RAISERROR('You cant select an airplane company for flights. Select an airline company instead.', 16, 1)
+		PRINT 'You cant select an airplane company for flights. Select an airline company instead.';
 
 END
