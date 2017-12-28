@@ -11,8 +11,9 @@ USE Airline1
 CREATE TABLE AIRPORT (
 	[Airport_code] CHAR(3) NOT NULL,
 	[Name] NVARCHAR(255) NOT NULL,
+	[Country] NVARCHAR(255) NOT NULL,
 	[City] NVARCHAR(255) NOT NULL,
-	[State] NVARCHAR(255) NOT NULL,
+	[State] NVARCHAR(255),
 	CONSTRAINT PK_airport PRIMARY KEY (Airport_code),
 	CONSTRAINT CHK_airport_code CHECK(Airport_code LIKE '[A-Z][A-Z][A-Z]')
 );
@@ -67,9 +68,9 @@ CREATE TABLE LEG_INSTANCE (
 	[Flight_no] INT NOT NULL,
 	[Leg_no] INT NOT NULL,
 	[Date] DATE NOT NULL,
-	[Number_of_available_seats] INT NOT NULL,
-	[Airplane_id] NVARCHAR(8) NOT NULL,
-	[Departure_airport_code] CHAR(3) NOT NULL,
+	[Number_of_available_seats] INT,
+	[Airplane_id] NVARCHAR(8),
+	[Departure_airport_code] CHAR(3),
 	[Departure_time] SMALLDATETIME ,
 	[Arrival_airport_code] CHAR(3),
 	[Arrival_time] SMALLDATETIME ,
