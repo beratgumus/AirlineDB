@@ -27,3 +27,23 @@ GROUP BY C.Country
 ORDER BY COUNT(*) desc;
 
 
+-- Ucak ureten firmalarin, ucaklarinin yaptigi toplam kaza sayisi
+
+WITH ACCIDENT(Airplane_id) 
+AS
+(SELECT Airplane_id
+FROM	LEG_INSTANCE as LI
+WHERE	 NOT EXISTS (SELECT	*
+				FROM	FLIGHT_LEG as FL
+				WHERE	LI.Flight_no=Flight_no
+				AND		LI.Leg_no=FL.Leg_number
+				AND		LI.Arrival_airport_code is NOT NULL
+				AND		LI.Arrival_time is NOT NULL
+				))
+SELECT	C.Name,COUNT(*) as Kaza_sayisi
+FROM	AIRPLANE as A,AIRPLANE_TYPE as AT,COMPANY as C,ACCIDENT as AC
+WHERE	AC.Airplane_id=A.Airplane_id
+AND		A.Airplane_type=AT.Airplane_type_name
+AND		AT.Company_id=C.Id
+GROUP BY C.Name
+ORDER BY COUNT(*) desc;
