@@ -1,11 +1,11 @@
 ﻿USE Airline1
-INSERT INTO AIRPORT (Airport_code, Name, City, State) 
+INSERT INTO AIRPORT (Airport_code, Name, Country, City, State) 
 VALUES 
-('ADB', 'Adnan Menderes Havalimanı', 'İzmir', 'Türkiye'),
-('IST', 'Atatürk Havalimanı', 'İstanbul', 'Türkiye'),
-('ESB', 'Esenboğa Havalimanı', 'Ankara', 'Türkiye'),
-('NRT', 'Narita International Airport', 'Tokyo', 'Japan'),
-('YXU', 'London International Airport', 'Ontario', 'London');
+('ADB', 'Adnan Menderes Havalimanı','Türkiye', 'İzmir', NULL),
+('IST', 'Atatürk Havalimanı', 'Türkiye','İstanbul', NULL),
+('ESB', 'Esenboğa Havalimanı','Türkiye' ,'Ankara', NULL),
+('NRT', 'Narita International Airport','Japan', 'Tokyo', NULL),
+('YXU', 'London International Airport','Canada', 'London','Ontario');
 
 
 INSERT INTO FLIGHT (Flight_number, Airline, Weekdays) 
