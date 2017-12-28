@@ -21,7 +21,8 @@ CREATE TABLE COMPANY (
 	[Id] INT NOT NULL,
 	[Name] NVARCHAR(255) NOT NULL,
 	[Company_type] NVARCHAR(255),
-	CONSTRAINT PK_company PRIMARY KEY (Id)
+	CONSTRAINT PK_company PRIMARY KEY (Id),
+	CONSTRAINT CHK_company_type CHECK(Company_type = 'Airplane' OR Company_type = 'Airline')
 );
 
 CREATE TABLE FLIGHT (
@@ -45,7 +46,8 @@ CREATE TABLE FLIGHT_LEG (
 	CONSTRAINT PK_flight_leg3 PRIMARY KEY (Flight_no,Leg_number),
 	CONSTRAINT FK_flight_no3 FOREIGN KEY (Flight_no) REFERENCES FLIGHT(Flight_number),
 	CONSTRAINT FK_departure_airport_code3 FOREIGN KEY (Departure_airport_code) REFERENCES AIRPORT(Airport_code),
-	CONSTRAINT FK_arrival_airport_code3 FOREIGN KEY (Arrival_airport_code) REFERENCES AIRPORT(Airport_code)
+	CONSTRAINT FK_arrival_airport_code3 FOREIGN KEY (Arrival_airport_code) REFERENCES AIRPORT(Airport_code),
+	CONSTRAINT CHK_km CHECK (Km BETWEEN 0 AND 20050) -- distance of two points on earth surface cannot be more than ~20030 km
 );
 
 CREATE TABLE FARE (
@@ -102,14 +104,15 @@ CREATE TABLE CAN_LAND (
 
 CREATE TABLE CUSTOMER(
 	[Id] INT NOT NULL,
-	[Name] NVARCHAR(255) NOT NULL,
-	[Phone] NVARCHAR(255) NOT NULL,
+	[Name] NVARCHAR(128) NOT NULL,
+	[Phone] NVARCHAR(32) NOT NULL,
 	[Email] NVARCHAR(255) NOT NULL,
 	[Address] NVARCHAR(255) NOT NULL,
-	[Country] NVARCHAR(255) NOT NULL,
+	[Country] NVARCHAR(64) NOT NULL,
 	[Passport_number] INT NOT NULL,
 	CONSTRAINT PK_customer PRIMARY KEY (Id),
-	CONSTRAINT UQ_passport UNIQUE (Passport_number)
+	CONSTRAINT UQ_passport UNIQUE (Passport_number),
+	CONSTRAINT CHK_passport_number CHECK (Passport_number BETWEEN 10000000 AND 99999999 ) --passport number must be 8 digits
 );
 
 CREATE TABLE SEAT_RESERVATION (
