@@ -50,7 +50,7 @@ SELECT IsNull(DC.Airport_code, AC.Airport_code) as Airport_code,
 	IsNull(DC.Departure_count, 0) as Departure_count,
 	IsNull(AC.Arrival_count, 0) as Arrival_count,
 	IsNull(AC.Arrival_count, 0) + IsNull(DC.Departure_count,0) as Total_usage,
-	MUB.Airline as Max_departure_airline
+	MUB.Airline as Max_departure_airline, MUB.Departure_count as Airline_departure_count
 FROM DEP_COUNTS as DC, ARR_COUNTS as AC, MAX_USED_BY as MUB
 WHERE AC.Airport_code = DC.Airport_code
 AND AC.Airport_code = MUB.Airport_code
