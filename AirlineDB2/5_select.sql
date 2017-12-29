@@ -55,7 +55,7 @@ SELECT COMPANY.Name as Airline, FL.Flight_no, LI.Leg_no, LI.[Date],
 	Scheduled_departure_time,CAST(LI.Departure_time as TIME(0)) as Departure_time, 
 	CUSTOMER.Name as Customer
 FROM FLIGHT_LEG as FL, LEG_INSTANCE as LI, FLIGHT, SEAT_RESERVATION as SR, CUSTOMER, COMPANY
-WHERE COMPANY.Name = 'Türk Hava Yolları' 
+WHERE COMPANY.Name = 'Türk Hava Yolları'
 AND FL.Flight_no = LI.Flight_no
 AND FL.Leg_number = LI.Leg_no
 AND FL.Flight_no = FLIGHT.Flight_number
@@ -64,5 +64,19 @@ AND	LI.Flight_no = SR.Flight_no
 AND	LI.Leg_no = SR.Leg_no
 AND	LI.Date = SR.Date
 AND SR.Customer_id = CUSTOMER.Id
-AND ( SELECT DATEDIFF(minute, CAST(LI.Date as DATETIME) + CAST(FL.Scheduled_departure_time as DATETIME), LI.Departure_time ) ) > 30;
+AND ( DATEDIFF(minute, CAST(LI.Date as DATETIME) + 
+	CAST(FL.Scheduled_departure_time as DATETIME), LI.Departure_time ) 
+	) > 30;
 
+
+-- Verilen bir havayolu şirketinin 5000 (aktarmasız) kilometreden uzun 
+-- uçuşlarında seyehat eden yolcuların listesi
+SELECT CUSTOMER.*, Flight_number, Km
+FROM COMPANY , FLIGHT, FLIGHT_LEG as FL, SEAT_RESERVATION as SR, CUSTOMER
+WHERE COMPANY.Name = 'Türk Hava Yolları'
+AND FL.Km > 5000
+AND FLIGHT.Company_id = COMPANY.Id
+AND FL.Flight_no = FLIGHT.Flight_number
+AND SR.Flight_no = FL.Flight_no
+AND SR.Leg_no = FL.Leg_number
+AND SR.Customer_id = CUSTOMER.Id
