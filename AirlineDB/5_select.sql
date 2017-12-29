@@ -16,7 +16,7 @@ AND ( SELECT DATEDIFF(minute, CAST(LI.Date as DATETIME) + CAST(FL.Scheduled_depa
 SELECT AIRPLANE.*
 FROM AIRPORT, CAN_LAND, AIRPLANE_TYPE, AIRPLANE
 WHERE AIRPORT.Name = 'Adnan Menderes Havalimanı'
-AND CAN_LAND.Airport_code = AIRPORT.Airport_code 
+AND CAN_LAND.Airport_code = AIRPORT.Airport_code
 AND CAN_LAND.Airplane_type_name = AIRPLANE_TYPE.Airplane_type_name
 AND AIRPLANE_TYPE.Airplane_type_name = AIRPLANE.Airplane_type;
 
@@ -51,7 +51,7 @@ FROM (
 		AND LEG_INSTANCE.Departure_airport_code = AIRPORT.Airport_code
 		AND FLIGHT.Flight_number = LEG_INSTANCE.Flight_no
 		AND LEG_INSTANCE.Date > CAST('2015.01.01' AS DATE)
-		--AND LEG_INSTANCE.Date IS NOT NULL) --yapMIŞ dediği için
+		AND LEG_INSTANCE.Arrival_time IS NOT NULL --yapMIŞ dediği için
 		GROUP BY FLIGHT.Airline
 	) RESULT
 WHERE RESULT.Flight_count < 5;

@@ -21,7 +21,7 @@ CREATE TABLE AIRPORT (
 CREATE TABLE COMPANY (
 	[Id] INT NOT NULL,
 	[Name] NVARCHAR(255) NOT NULL,
-	[Company_type] NVARCHAR(255),
+	[Company_type] NVARCHAR(255) NOT NULL,
 	CONSTRAINT PK_company PRIMARY KEY (Id),
 	CONSTRAINT CHK_company_type CHECK(Company_type = 'Airplane' OR Company_type = 'Airline')
 );
