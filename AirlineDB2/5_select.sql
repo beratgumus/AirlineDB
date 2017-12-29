@@ -1,4 +1,4 @@
-USE Airline2
+﻿USE Airline2
 
 -- Uyrugu Japonya olan musteriler tarafindan en cok tercih edilen havayolu sirketleri
 
@@ -47,3 +47,22 @@ AND		A.Airplane_type = AT.Airplane_type_name
 AND		AT.Company_id = C.Id
 GROUP BY C.Name
 ORDER BY COUNT(*) desc;
+
+
+-- 1. Verilen bir haavayolu şirketinde, yarım saatten fazla rotar yapan 
+-- uçuslarında uçan yolcularının listesi
+SELECT COMPANY.Name as Airline, FL.Flight_no, LI.Leg_no, LI.[Date], 
+	Scheduled_departure_time,CAST(LI.Departure_time as TIME(0)) as Departure_time, 
+	CUSTOMER.Name as Customer
+FROM FLIGHT_LEG as FL, LEG_INSTANCE as LI, FLIGHT, SEAT_RESERVATION as SR, CUSTOMER, COMPANY
+WHERE COMPANY.Name = 'Türk Hava Yolları' 
+AND FL.Flight_no = LI.Flight_no
+AND FL.Leg_number = LI.Leg_no
+AND FL.Flight_no = FLIGHT.Flight_number
+AND FLIGHT.Company_id = COMPANY.Id
+AND	LI.Flight_no = SR.Flight_no
+AND	LI.Leg_no = SR.Leg_no
+AND	LI.Date = SR.Date
+AND SR.Customer_id = CUSTOMER.Id
+AND ( SELECT DATEDIFF(minute, CAST(LI.Date as DATETIME) + CAST(FL.Scheduled_departure_time as DATETIME), LI.Departure_time ) ) > 30;
+
