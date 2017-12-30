@@ -79,4 +79,42 @@ AND FLIGHT.Company_id = COMPANY.Id
 AND FL.Flight_no = FLIGHT.Flight_number
 AND SR.Flight_no = FL.Flight_no
 AND SR.Leg_no = FL.Leg_number
-AND SR.Customer_id = CUSTOMER.Id
+AND SR.Customer_id = CUSTOMER.Id;
+
+
+-- 17. Uluslar arası uçuş gerçekleştiren havayolları şirketlerinin listesi
+WITH INTERNATIONAL_FLIGHTS(Flight_no) AS
+(
+	SELECT fl.Flight_no
+	FROM FLIGHT_LEG AS fl, AIRPORT AS a1, AIRPORT AS a2
+	WHERE fl.Departure_airport_code = a1.Airport_code
+	AND fl.Arrival_airport_code = a2.Airport_code
+	AND a1.State != a2.State
+)
+SELECT DISTINCT COMPANY.Name
+FROM FLIGHT, INTERNATIONAL_FLIGHTS, COMPANY
+WHERE Flight_number = INTERNATIONAL_FLIGHTS.Flight_no
+AND COMPANY.Id = FLIGHT.Company_id;
+
+
+-- 19. izmirden en az 1 kere uçuş yapmış şirketlerin listesi
+SELECT COMPANY.Name
+FROM AIRPORT, FLIGHT, LEG_INSTANCE, COMPANY
+WHERE AIRPORT.City = 'İzmir'
+AND LEG_INSTANCE.Departure_airport_code = AIRPORT.Airport_code
+AND LEG_INSTANCE.Flight_no = FLIGHT.Flight_number
+AND FLIGHT.Company_id = COMPANY.Id
+GROUP BY COMPANY.Name
+
+-- Kalkış ve iniş havaalanı verilen, henüz gerçekleşmemiş uçuşların
+-- tarihi, kalkış saati, iniş saati ve boş koltuk sayıları
+SELECT LEG_INSTANCE.Date, Scheduled_departure_time, Number_of_available_seats, 
+	Scheduled_arrival_time
+FROM AIRPORT as DEP, AIRPORT as ARR, FLIGHT_LEG, LEG_INSTANCE
+WHERE DEP.City = 'İzmir'
+AND ARR.City = 'İstanbul'
+AND FLIGHT_LEG.Departure_airport_code = DEP.Airport_code
+AND FLIGHT_LEG.Arrival_airport_code = ARR.Airport_code
+AND LEG_INSTANCE.Flight_no = FLIGHT_LEG.Flight_no
+AND LEG_INSTANCE.Leg_no = FLIGHT_LEG.Leg_number
+AND DATE > CAST(GETDATE() as DATE)

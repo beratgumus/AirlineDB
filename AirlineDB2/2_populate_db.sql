@@ -141,7 +141,11 @@ VALUES
 (7,1,'2017-12-28',153,	'ALA999','ADB', '2017-12-28 17:12', null, null),			 --Havada olan,henuz inis yapmamis ucus
 (2,1,'2017-11-14',17,	'THY111','ADB','2017-11-14 10:51','ESB','2017-11-14 12:40'), -- Planlanan yerden farkli havaalanina inen ucus -- IST yerine ESB ye iniyor
 (2,1,'2017-11-21',0,	'THY555','ADB','2017-11-21 10:50','ESB','2017-11-21 13:13'), -- Planlanan yerden farkli havaalanina inen fakat normalde inememesi gereken uçuş
-(9,1,'2017-11-22',6,	'UNAFFF','NRT','2017-11-22 05:02','YXU','2017-11-23 00:12');
+(9,1,'2017-11-22',6,	'UNAFFF','NRT','2017-11-22 05:02','YXU','2017-11-23 00:12'),
+(1,1,'2018-1-22',135,	'THY111','ADB', null, null, null), -- gerçekleşmemiş uçuş
+(1,1,'2018-1-25',150,	'THY111','ADB', null, null, null), -- hiç bilet satılmamış uçuş
+(3,1,'2018-1-25',188,	'THY222','ADB', null, null, null);
+
 
 INSERT INTO CUSTOMER(Id, Name, Phone, Email, Address, Country, Passport_number)
 VALUES
