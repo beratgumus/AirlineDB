@@ -118,3 +118,36 @@ AND FLIGHT_LEG.Arrival_airport_code = ARR.Airport_code
 AND LEG_INSTANCE.Flight_no = FLIGHT_LEG.Flight_no
 AND LEG_INSTANCE.Leg_no = FLIGHT_LEG.Leg_number
 AND DATE > CAST(GETDATE() as DATE)
+
+
+-- Yılın ilk uçuşunu gerçekleştiren havaalanı şirketi ve uçuş bilgileri
+	SELECT TOP 1 C.Name as Airline, LI.Flight_no, LI.Leg_no, LI.Date
+	FROM LEG_INSTANCE as LI, FLIGHT as F, COMPANY as C
+	WHERE DATEPART(YY, LI.Date) = DATEPART(YY, GETDATE())
+	AND F.Flight_number = LI.Flight_no
+	AND C.Id = F.Company_id
+	ORDER BY LI.Date ASC
+
+	
+-- Yılın ilk ve son uçuşlarını gerçekleştiren havayolu şirketleri ve uçuş bilgileri
+WITH FIRST_FLIGHT(Type, Airline, Flight_no, Leg_no, Date) as (
+	
+	SELECT TOP 1 'First flight', C.Name as Airline, LI.Flight_no, LI.Leg_no, LI.Date
+	FROM LEG_INSTANCE as LI, FLIGHT as F, COMPANY as C
+	WHERE DATEPART(YY, LI.Date) = DATEPART(YY, GETDATE())
+	AND F.Flight_number = LI.Flight_no
+	AND C.Id = F.Company_id
+	ORDER BY LI.Date ASC
+
+), LAST_FLIGHT(Type, Airline, Flight_no, Leg_no, Date) as (
+
+	SELECT TOP 1  'Last flight', C.Name as Airline, LI.Flight_no, LI.Leg_no, LI.Date
+	FROM LEG_INSTANCE as LI, FLIGHT as F, COMPANY as C
+	WHERE DATEPART(YY, LI.Date) = DATEPART(YY, GETDATE())
+	AND F.Flight_number = LI.Flight_no
+	AND C.Id = F.Company_id
+	ORDER BY LI.Date DESC
+)
+SELECT * FROM FIRST_FLIGHT
+UNION
+SELECT * FROM LAST_FLIGHT;

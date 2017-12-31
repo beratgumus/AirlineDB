@@ -144,8 +144,8 @@ VALUES
 (9,1,'2017-11-22',6,	'UNAFFF','NRT','2017-11-22 05:02','YXU','2017-11-23 00:12'),
 (1,1,'2018-1-22',135,	'THY111','ADB', null, null, null), -- gerçekleşmemiş uçuş
 (1,1,'2018-1-25',150,	'THY111','ADB', null, null, null), -- hiç bilet satılmamış uçuş
-(3,1,'2018-1-25',188,	'THY222','ADB', null, null, null);
-
+(3,1,'2018-1-25',188,	'THY222','ADB', null, null, null),
+(9,1,'2018-12-29',70,	'UNAFFF','NRT', null, null, null);
 
 INSERT INTO CUSTOMER(Id, Name, Phone, Email, Address, Country, Passport_number)
 VALUES
