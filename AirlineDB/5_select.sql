@@ -102,18 +102,18 @@ HAVING COUNT(*) > 5;
 -- Flight_count = iniş havalimanı + kalkış havalimanı 'Adnan Menderes Havalimanı'
 -- olan uçuşların sayısı
 SELECT F.Airline, COUNT(*) as Flight_count
-FROM FLIGHT as F, FLIGHT_LEG as FL
+FROM FLIGHT as F, LEG_INSTANCE as LI
 WHERE ( 
-	FL.Departure_airport_code IN (
+	LI.Departure_airport_code IN (
 		SELECT Airport_code
 		FROM AIRPORT
 		WHERE AIRPORT.Name = 'Adnan Menderes Havalimanı' )
-	OR FL.Arrival_airport_code IN (
+	OR LI.Arrival_airport_code IN (
 		SELECT Airport_code
 		FROM AIRPORT
 		WHERE AIRPORT.Name = 'Adnan Menderes Havalimanı' )
 )
-AND F.Flight_number = FL.Flight_no
+AND F.Flight_number = LI.Flight_no
 GROUP BY F.Airline
 ORDER BY COUNT(*) DESC
 
