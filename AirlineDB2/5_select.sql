@@ -1,7 +1,6 @@
 ﻿USE Airline2
 
 -- Uyrugu Japonya olan musteriler tarafindan en cok tercih edilen havayolu sirketleri
-
 SELECT	CO.Name, COUNT(*) as Musteri_sayisi
 FROM CUSTOMER as C, SEAT_RESERVATION as SR, FLIGHT as F, COMPANY as CO
 WHERE	C.Id = SR.Customer_id
@@ -151,3 +150,21 @@ WITH FIRST_FLIGHT(Type, Airline, Flight_no, Leg_no, Date) as (
 SELECT * FROM FIRST_FLIGHT
 UNION
 SELECT * FROM LAST_FLIGHT;
+
+
+-- 20. verilen bir havalimanını en çok kullanan şirketlerin listesi
+-- Flight_count = iniş havalimanı + kalkış havalimanı 'Adnan Menderes Havalimanı'
+-- olan uçuşların sayısı
+WITH SELECTED_AIRPORT(Code) as (
+	SELECT Airport_code	
+	FROM AIRPORT
+	WHERE AIRPORT.Name = 'Adnan Menderes Havalimanı'
+)
+SELECT C.Name, COUNT(*) as Flight_count
+FROM FLIGHT as F, LEG_INSTANCE as LI, COMPANY as C, SELECTED_AIRPORT
+WHERE (	LI.Departure_airport_code = SELECTED_AIRPORT.Code
+		OR LI.Arrival_airport_code = SELECTED_AIRPORT.Code )
+AND F.Flight_number = LI.Flight_no
+AND F.Company_id = C.Id
+GROUP BY C.Name
+ORDER BY COUNT(*) DESC
