@@ -1,7 +1,9 @@
-USE master
-
-IF EXISTS(select * from sys.databases where name='Airline2')
-DROP DATABASE Airline2
+IF db_id('Airline2') IS NOT NULL
+	USE master;
+	GO
+	ALTER DATABASE Airline2 SET SINGLE_USER WITH ROLLBACK IMMEDIATE;
+	GO
+	DROP DATABASE Airline2
 GO
 
 CREATE DATABASE Airline2
