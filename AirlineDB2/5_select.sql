@@ -168,3 +168,14 @@ AND F.Flight_number = LI.Flight_no
 AND F.Company_id = C.Id
 GROUP BY C.Name
 ORDER BY COUNT(*) DESC
+
+-- ortalama 200 tl'den daha pahallıya uçuş yapan yolcuların bilgileri,
+--  yaptığı uçuş sayısı, ve ortalama bilet fiyatı
+SELECT C.Id, C.Name, COUNT(*) as Flight_count, AVG(F.Amount) as Avg_seat_price
+FROM SEAT_RESERVATION as SR, CUSTOMER as C, FARE as F
+WHERE C.Id = SR.Customer_id 
+AND SR.Fare_code = F.Fare_code
+AND SR.Flight_no = F.Flight_no
+GROUP BY C.Id, C.Name
+HAVING AVG(F.Amount) > 200
+ORDER BY C.Id
