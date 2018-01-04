@@ -53,16 +53,6 @@ CREATE TABLE FLIGHT_LEG (
 	CONSTRAINT CHK_km CHECK (Km BETWEEN 0 AND 20050) -- distance of two points on earth surface cannot be more than ~20030 km
 );
 
-CREATE TABLE FARE (
-	[Flight_no] INT NOT NULL,
-	[Fare_code] INT NOT NULL,
-	[Amount] INT NOT NULL,
-	[Restrictions] NVARCHAR(255),
-	CONSTRAINT PK_fare PRIMARY KEY (Flight_no, Fare_code),
-	CONSTRAINT FK_flight_no4 FOREIGN KEY (Flight_no) REFERENCES FLIGHT(Flight_number),
-	CONSTRAINT CHK_amount CHECK(Amount > 10)
-);
-
 CREATE TABLE AIRPLANE_TYPE (
 	[Airplane_type_name] NVARCHAR(255) NOT NULL,
 	[Max_seats] INT NOT NULL,
@@ -118,14 +108,26 @@ CREATE TABLE CUSTOMER(
 	CONSTRAINT CHK_passport_number CHECK (Passport_number BETWEEN 10000000 AND 99999999 ) --passport number must be 8 digits
 );
 
+CREATE TABLE FARE (
+	[Flight_no] INT NOT NULL,
+	[Fare_code] INT NOT NULL,
+	[Amount] INT NOT NULL,
+	[Restrictions] NVARCHAR(255),
+	CONSTRAINT PK_fare PRIMARY KEY (Flight_no, Fare_code),
+	CONSTRAINT FK_flight_no4 FOREIGN KEY (Flight_no) REFERENCES FLIGHT(Flight_number),
+	CONSTRAINT CHK_amount CHECK(Amount > 10)
+);
+
 CREATE TABLE SEAT_RESERVATION (
 	[Flight_no] INT NOT NULL,
 	[Leg_no] INT NOT NULL,
 	[Date] DATE NOT NULL,
+	[Fare_code] INT NOT NULL,
 	[Seat_number] INT NOT NULL,
 	[Customer_id] INT NOT NULL,
 	CONSTRAINT PK_seat_reservation PRIMARY KEY (Flight_no, Leg_no, [Date], Seat_number),
 	CONSTRAINT FK_fno_lno_date9 FOREIGN KEY (Flight_no, Leg_no, [Date]) REFERENCES LEG_INSTANCE(Flight_no, Leg_no, [Date]),
+	CONSTRAINT FK_fare FOREIGN KEY (Flight_no, Fare_code) REFERENCES FARE(Flight_no, Fare_code),
 	CONSTRAINT FK_customer_id2 FOREIGN KEY (Customer_id) REFERENCES CUSTOMER(Id)
 );
 
