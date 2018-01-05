@@ -6,6 +6,7 @@ VALUES
 ('IST', 'Atatürk Havalimanı', 'İstanbul', 'Türkiye'),
 ('ESB', 'Esenboğa Havalimanı', 'Ankara', 'Türkiye'),
 ('NRT', 'Narita International Airport', 'Tokyo', 'Japan'),
+('KIX', 'Kansai International Airport', 'Osaka', 'Japan'),
 ('YXU', 'London International Airport', 'Ontario', 'London');
 
 INSERT INTO COMPANY (Id, Name, Company_type)
@@ -28,7 +29,9 @@ VALUES
 (7, 2, '2'), -- izmir -> istanbul
 (8, 1, '1,2,3,4,5,6,7'), -- izmir -> ankara
 (9, 3, '2,6,7'), -- japonya -> londra
-(10, 1, '1,5'); -- tokyo -> istanbul | aktarmasız
+(10, 1, '1,5'), -- tokyo -> istanbul | aktarmasız
+(11, 3, '1,2,3,4,6,7'), -- kansai -> narita  (tokyo) 
+(12, 3, '1,2,3,4,6,7'); -- narita -> kansai 
 
 
 INSERT INTO FLIGHT_LEG (Flight_no, Leg_number, Departure_airport_code, Scheduled_departure_time,
@@ -44,32 +47,40 @@ VALUES
 (7, 1, 'ADB', '07:10', 'IST', '08:00', 350),
 (8, 1, 'ADB', '16:25', 'ESB', '17:25', 550),
 (9, 1, 'NRT', '05:00', 'YXU', '01:00', 10300),
-(10, 1, 'NRT', '21:00', 'IST', '14:40', 8895);
+(10, 1, 'NRT', '21:00', 'IST', '14:40', 8895),
+(11, 1, 'KIX', '09:00', 'NRT', '11:30', 490),
+(12, 1, 'NRT', '18:00', 'KIX', '19:30', 490);
 
 INSERT INTO FARE (Flight_no, Fare_code, Amount, Restrictions)
 VALUES
-(1, 1, 75, NULL),
-(1, 2, 150, NULL),
-(2, 1, 120, NULL),
-(2, 2, 230, NULL),
-(3, 1, 80, NULL),
-(3, 2, 210, NULL),
-(4, 1, 2100, NULL),
-(4, 2, 2700, NULL),
-(5, 1, 2300, NULL),
-(5, 2, 3000, NULL),
-(6, 1, 35, NULL),
-(7, 1, 35, NULL),
-(8, 1, 80, NULL),
-(8, 2, 170, NULL),
-(9, 1, 5590, NULL),
-(9, 2, 6250, NULL),
-(10, 1, 1890, NULL),
-(10, 2, 2250, NULL);
+(1, 1, 75,	 'Non-refundable'),
+(1, 2, 150,  'Refundable'),
+(1, 3, 215,  'Flexible'),
+(2, 1, 120,  'Non-refundable'),
+(2, 2, 230,	 'Refundable'),
+(2, 3, 350,	 'Flexible'),
+(3, 1, 80,	 'Non-refundable'),
+(3, 2, 210,  'Refundable'),
+(3, 3, 290,	 'Flexible'),
+(4, 1, 2100, 'Non-refundable'),
+(4, 2, 2700, 'Refundable'),
+(5, 1, 2300, 'Non-refundable'),
+(5, 2, 3000, 'Refundable'),
+(6, 1, 35,	 'Non-refundable'),
+(7, 1, 35,	 'Refundable'),
+(8, 1, 80,   'Non-refundable'),
+(8, 2, 170,  'Refundable'),
+(9, 1, 5590, 'Non-refundable'),
+(9, 2, 6250, 'Refundable'),
+(10, 1, 1890,'Non-refundable'),
+(10, 2, 2250,'Refundable'),
+(11, 1, 195, 'Non-refundable'),
+(11, 2, 270, 'Refundable'),
+(12, 1, 200, 'Non-refundable'),
+(12, 2, 275, 'Refundable'),
+(12, 3, 310, 'Flexible');
 
 
-
--- Source: https://tr.wikipedia.org/wiki/T%C3%BCrk_Hava_Yollar%C4%B1
 INSERT INTO AIRPLANE_TYPE (Airplane_type_name, Max_seats, Company_id)
 VALUES
 ('Airbus A320-200', 153, 7),
@@ -92,6 +103,7 @@ VALUES
 ('XXX888', 149, 'Boeing 737-900ER'),
 ('ALA999', 153, 'Airbus A320-200'),
 ('XXX101', 250, 'Airbus A330-200'),
+('UNA111', 165, 'Boeing 737-800'),
 ('UNAFFF', 70, 'Bombardier CRJ700');
 
 
@@ -105,6 +117,7 @@ VALUES
 ('Airbus A321-200', 'ESB'),
 ('Airbus A321-200', 'NRT'),
 ('Airbus A321-200', 'YXU'),
+('Airbus A321-200', 'KIX'),
 ('Airbus A330-200', 'ADB'), -- Airbus A330-200 | ESB inemiyor
 ('Airbus A330-200', 'IST'),
 ('Airbus A330-200', 'NRT'),
@@ -114,6 +127,7 @@ VALUES
 ('Boeing 737-800', 'ESB'),
 ('Boeing 737-800', 'NRT'),
 ('Boeing 737-800', 'YXU'),
+('Boeing 737-800', 'KIX'),
 ('Boeing 737-900ER', 'IST'), -- Boeing 737-900ER
 ('Boeing 737-900ER', 'ESB'),
 ('Boeing 737-900ER', 'NRT'),
@@ -123,8 +137,11 @@ VALUES
 ('Bombardier CRJ700', 'ESB'),
 ('Bombardier CRJ700', 'NRT'),
 ('Bombardier CRJ700', 'YXU'),
+('Bombardier CRJ700', 'KIX'),
 ('Airbus A380', 'NRT'), -- Airbus A380 | sadece yurt dışı
-('Airbus A380', 'YXU');
+('Airbus A380', 'YXU'),
+('Airbus A380', 'KIX');
+
 
 INSERT INTO LEG_INSTANCE(Flight_no,Leg_no,Date,Number_of_available_seats,Airplane_id,Departure_airport_code,
 	Departure_time,Arrival_airport_code,Arrival_time)
@@ -147,14 +164,17 @@ VALUES
 (2,1,'2017-11-14',17,	'THY111','ADB','2017-11-14 10:51','ESB','2017-11-14 12:40'), -- Planlanan yerden farkli havaalanina inen ucus -- IST yerine ESB ye iniyor
 (2,1,'2017-11-21',0,	'THY555','ADB','2017-11-21 10:50','ESB','2017-11-21 13:13'), -- Planlanan yerden farkli havaalanina inen fakat normalde inememesi gereken uçuş
 (9,1,'2017-11-22',6,	'UNAFFF','NRT','2017-11-22 05:02','YXU','2017-11-23 00:12'),
+(8,1,'2017-9-4', 10,	'THY333','ADB','2017-9-4 16:27',  'ESB','2017-9-4 17:31'),
+(11,1,'2017-10-20', 12,	'UNA111','KIX','2017-10-20 09:00',  'NRT','2017-10-20 11:31'),
+(12,1,'2017-10-20', 2,	'UNA111','NRT','2017-10-20 18:00',  'KIX','2017-10-20 19:20'),
 (1,1,'2018-1-22',135,	'THY111','ADB', null, null, null), -- gerçekleşmemiş uçuş
 (1,1,'2018-1-25',150,	'THY111','ADB', null, null, null), -- hiç bilet satılmamış uçuş
 (3,1,'2018-1-25',188,	'THY222','ADB', null, null, null),
 (9,1,'2018-12-29',70,	'UNAFFF','NRT', null, null, null);
 
+
 INSERT INTO CUSTOMER(Id, Name, Phone, Email, Address, Country, Passport_number)
 VALUES
-
 (1, 'Mehmet Okumuş',	'+905551112222', 'mehmet@m.com', '53/33 sk no:5 İstanbul', 'Türkiye', 99102345),
 (2, 'Melis Okumuş',		'+905001002000', 'melis@y.com',	'Lale sokak no:22 İzmir', 'Türkiye', 11683945),
 (3, 'Sema Okumamış ',	'+905001502002', 'sema_1@m.com', '63/55 sk no:62 Adana', 'Türkiye',82658364),
@@ -173,18 +193,19 @@ VALUES
 (16, 'Tetsushou Fukui',	'+15415454908', 'tetsu5@ymh.com', 'Taitō-ku, Tōkyō-to 111-0032', 'Japan',56134533),
 (17, 'Lisa L. Smith',	'+16415524531', 'lisasmth@a.com', '11 Wilton Pl Belgravia', 'England', 51009633),
 (18, 'Alec Silva',		'+11174257502',  'Suspen@a.co','〒162-0807 Tōkyō-to, Shinjuku-ku','Japan',34248085),
-(19, 'Guine White',		'+11947029437',	'gui@egestas.net','P.O. Box 802, 6387 Sed St.','Panama',20434226),
-(20, 'Kato Logan',		'+18032920211',	'Donec@primis.org','P.O. Box 400, 5460 Suspendisse St.','Argentina',79809146),
-(21, 'Evan Barnett',	'+12216571686',	'nibh@Nulla.org','Ap #930-1583 Dui, Ave','Gabon',77508114),
-(22, 'Chase Ratliff',	'+15532472921',	'susc66@Nun.co','P.O. Box 190, 6188 Proin Ave','Indonesia',75211956),
+(19, 'Guine White',		'+11947029437',	'gui@egestas.net','P.O. Box 802, 6387 Sed St.','England',20434226),
+(20, 'Kato Logan',		'+18032920211',	'Donec@primis.org','P.O. Box 400, 5460 Suspendisse St.','England',79809146),
+(21, 'Evan Barnett',	'+12216571686',	'nibh@Nulla.org','Ap #930-1583 Dui, Ave','Kuwait',77508114),
+(22, 'Chase Ratliff',	'+15532472921',	'susc66@Nun.co','P.O. Box 190, 6188 Proin Ave','Bolivia',75211956),
 (23, 'Xavier Cantu',	'+13827606327',	'Ves.ante@um.ca','P.O. Box 853, 2608 Nisi. St.','Bolivia',39360081),
 (24, 'Alex Mercer',		'+13082426688',	'In.gue@Cras.edu','P.O. Box 721, 8260 Nulla. Ave','Japan',24581066),
-(25, 'Salvador Levine',	'+16666802564',	'viamus@ateget.edu','254-2236 Amet Street','Bhutan',84344346),
-(26, 'Zephania Peters',	'+19115827032',	'uit.in@at.ca','P.O. Box 452, 8267 Imperdiet Road','Guinea-Bissau',16837283),
-(27, 'Emi Ball',		'+19145922922',	'aug.ut@estas.net','Ap #549-5514 Faucibus. Road','Tuvalu',80937458),
-(28, 'Bianca Chris',	'+18318631380',	'ori.lus@itamet.co','Ap #843-8343 Eget, Rd.','Belgium',46704263),
-(29, 'Thadd Marrowgar',	'+17263989143',	'e77n@liquam.edu','143-7096 Gravida. Rd.','Kazakhstan',24133493),
+(25, 'Salvador Levine',	'+16666802564',	'viamus@ateget.edu','254-2236 Amet Street','Kuwait',84344346),
+(26, 'Zephania Peters',	'+19115827032',	'uit.in@at.ca','P.O. Box 452, 8267 Imperdiet Road','Bolivia',16837283),
+(27, 'Emi Ball',		'+19145922922',	'aug.ut@estas.net','Ap #549-5514 Faucibus. Road','England',80937458),
+(28, 'Bianca Chris',	'+18318631380',	'ori.lus@itamet.co','Ap #843-8343 Eget, Rd.','Kuwait',46704263),
+(29, 'Thadd Marrowgar',	'+17263989143',	'e77n@liquam.edu','143-7096 Gravida. Rd.','Kazakhistan',24133493),
 (30, 'Kai Weiss',		'+18649782718',	'ad.lito8@odim.org','P.O. Box 569, 917 Mauris St.','Kuwait',15936462);
+
 
 INSERT INTO SEAT_RESERVATION (Flight_no, Leg_no, Date, Fare_code, Seat_number, Customer_id )
 VALUES
@@ -199,6 +220,10 @@ VALUES
 (3, 1, '2017-11-14', 1, 1, 1),
 (3, 1, '2017-11-14', 1, 2, 2),
 (3, 1, '2017-11-14', 2, 3, 4),
+(3, 1, '2017-11-14', 1, 4, 30),
+(3, 1, '2017-11-14', 1, 5, 28),
+(3, 1, '2017-11-14', 1, 6, 17),
+(3, 1, '2017-11-14', 1, 7, 18),
 (4, 1, '2017-10-22', 1, 1, 8),
 (4, 1, '2017-10-22', 1, 2, 9),
 (4, 1, '2017-11-13', 1, 1, 10),
@@ -210,7 +235,26 @@ VALUES
 (5, 2, '2017-11-18', 1, 12, 28),
 (5, 2, '2017-11-18', 1, 18, 29),
 (5, 2, '2017-11-18', 1, 24, 30),
+(8, 1, '2017-9-4',   1, 1, 4),
+(8, 1, '2017-9-4',   1, 2, 7),
+(8, 1, '2017-9-4',   1, 3, 15),
+(8, 1, '2017-9-4',   1, 5, 8),
+(8, 1, '2017-9-4',   1, 6, 5),
+(8, 1, '2017-9-4',   1, 7, 14),
 (9, 1, '2017-11-22', 1, 1, 16),
 (9, 1, '2017-11-22', 1, 2, 9),
 (9, 1, '2017-11-22', 1, 3, 17),
-(10,1, '2017-11-15', 1, 1, 10);
+(10,1, '2017-11-15', 1, 1, 10),
+(11,1, '2017-10-20', 1, 1, 24),
+(11,1, '2017-10-20', 1, 2, 30),
+(11,1, '2017-10-20', 2, 3, 16),
+(11,1, '2017-10-20', 1, 4, 11),
+(11,1, '2017-10-20', 1, 5, 12),
+(11,1, '2017-10-20', 1, 6, 10),
+(12,1, '2017-10-20', 1, 1, 24),
+(12,1, '2017-10-20', 1, 2, 30),
+(12,1, '2017-10-20', 2, 3, 28),
+(12,1, '2017-10-20', 1, 4, 11),
+(12,1, '2017-10-20', 1, 5, 12),
+(12,1, '2017-10-20', 1, 6, 18),
+(12,1, '2017-10-20', 1, 10, 17);
