@@ -179,3 +179,12 @@ AND SR.Flight_no = F.Flight_no
 GROUP BY C.Id, C.Name
 HAVING AVG(F.Amount) > 200
 ORDER BY C.Id
+
+-- Havayolu şirketlerinin kullanımlarının ülkelere göre dağılımları
+SELECT CO.Name, CU.Country, COUNT(*) as Customer_count
+FROM SEAT_RESERVATION as SR, CUSTOMER as CU, FLIGHT as F, COMPANY as CO		
+WHERE SR.Customer_id = CU.Id
+AND SR.Flight_no = F.Flight_number
+AND F.Company_id = CO.Id
+GROUP BY CO.Name, CU.Country
+ORDER BY CO.Name
