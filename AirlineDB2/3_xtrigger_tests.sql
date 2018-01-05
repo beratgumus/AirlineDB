@@ -23,9 +23,9 @@ SELECT @total_km = Total_km FROM FFC WHERE Customer_id = @test_customer;
 PRINT 'Customer '+ CAST(@test_customer as VARCHAR) + 
 	' Total_km = ' + CAST(@Total_km as VARCHAR);
 
-INSERT INTO SEAT_RESERVATION (Flight_no, Leg_no, Date, Seat_number, Customer_id)
+INSERT INTO SEAT_RESERVATION (Flight_no, Leg_no, Date, Fare_code, Seat_number, Customer_id)
 VALUES
-(1, 1, '2017-11-13', 999, @test_customer); -- uçuş uzunluğu 350 km
+(1, 1, '2017-11-13', 1, 999, @test_customer); -- uçuş uzunluğu 350 km
 
 SELECT @total_km = Total_km FROM FFC WHERE Customer_id = @test_customer;
 PRINT 'Customer '+ CAST(@test_customer as VARCHAR) + 
