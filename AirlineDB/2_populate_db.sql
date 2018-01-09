@@ -18,7 +18,9 @@ VALUES
 (6, 'Alamet Havayolları', '1'), -- istanbul -> ankara
 (7, 'Alamet Havayolları', '2'), -- izmir -> istanbul
 (8, 'Türk Hava Yolları', '1,2,3,4,5,6,7'), -- izmir -> ankara
-(9, 'Unified Airlines', '1,5'); -- japonya -> londra
+(9, 'Unified Airlines', '1,5'), -- japonya -> londra
+(10, 'Türk Hava Yolları', '7'),
+(11, 'Türk Hava Yolları', '6');-- ankara -> izmir -> istanbul ->tokyo
 
 
 INSERT INTO FLIGHT_LEG (Flight_no, Leg_number, Departure_airport_code, Scheduled_departure_time,
@@ -33,7 +35,11 @@ VALUES
 (6, 1, 'IST', '13:15', 'ESB', '14:10'),
 (7, 1, 'ADB', '07:10', 'IST', '08:00'),
 (8, 1, 'ADB', '16:25', 'ESB', '17:25'),
-(9, 1, 'NRT', '05:00', 'YXU', '01:00');
+(9, 1, 'NRT', '05:00', 'YXU', '01:00'),
+(10, 1, 'ADB', '01:00', 'NRT', '20:00'),
+(11, 1, 'ESB', '19:00', 'ADB', '20:15'),
+(11, 2, 'ADB', '07:00', 'IST', '08:15'),
+(11, 3, 'IST', '02:10', 'NRT', '19:50');
 
 INSERT INTO FARE (Flight_no, Fare_code, Amount, Restrictions)
 VALUES
@@ -132,7 +138,11 @@ VALUES
 (7,1,'2017-12-28',153,	'ALA999','ADB', '2017-12-28 17:12', null, null),			 --Havada olan,henuz inis yapmamis ucus
 (2,1,'2017-11-14',17,	'THY111','ADB','2017-11-14 10:51','ESB','2017-11-14 12:40'), -- Planlanan yerden farkli havaalanina inen ucus -- IST yerine ESB ye iniyor
 (2,1,'2017-11-21',0,	'THY555','ADB','2017-11-21 10:50','ESB','2017-11-21 13:13'), -- Planlanan yerden farkli havaalanina inen fakat normalde inememesi gereken uçuş
-(9,1,'2017-11-22',6,	'UNAFFF','NRT','2017-11-22 05:02','YXU','2017-11-23 00:12');
+(9,1,'2017-11-22',6,	'UNAFFF','NRT','2017-11-22 05:02','YXU','2017-11-23 00:12'),
+(1,1,'2018-1-22',135,	'THY111','ADB', null, null, null), -- gerçekleşmemiş uçuş
+(1,1,'2018-1-25',150,	'THY111','ADB', null, null, null), -- hiç bilet satılmamış uçuş
+(3,1,'2018-1-25',188,	'THY222','ADB', null, null, null),
+(9,1,'2018-12-29',70,	'UNAFFF','NRT', null, null, null);
 
 INSERT INTO SEAT_RESERVATION (Flight_no, Leg_no, Date, Seat_number, Customer_name, Customer_phone)
 VALUES
