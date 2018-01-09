@@ -20,16 +20,15 @@ AND FL2.Leg_number = (
 	FROM FLIGHT_LEG
 	WHERE Flight_no = F.Flight_number
 	GROUP BY Flight_no
-)
+);
 
 
 -- 3. Planlanan yerden farklı yere iniş yapan uçuşlar
-USE Airline1
 SELECT	*
 FROM FLIGHT_LEG as FL, LEG_INSTANCE as LI
 WHERE FL.Flight_no = LI.Flight_no 
 AND FL.Leg_number = LI.Leg_no
-AND FL.Arrival_airport_code != LI.Arrival_airport_code ;	
+AND FL.Arrival_airport_code != LI.Arrival_airport_code;	
 
 -- 18) Aktarmalı uçuşların listesi
 SELECT COUNT(*) AS Leg_count, FLIGHT_LEG.Flight_no
@@ -55,7 +54,7 @@ WITH INTERNATIONAL_FLIGHTS(Flight_no) AS
 	FROM FLIGHT_LEG AS fl, AIRPORT AS a1, AIRPORT AS a2
 	WHERE fl.Departure_airport_code = a1.Airport_code
 	AND fl.Arrival_airport_code = a2.Airport_code
-	AND a1.State != a2.State
+	AND a1.Country != a2.Country
 )
 SELECT DISTINCT Airline
 FROM FLIGHT, INTERNATIONAL_FLIGHTS
@@ -74,7 +73,6 @@ AND		F.Flight_number in(
 							AND		LI.Departure_time is NOT NULL)
 Group by Airline;
 
-
 -- 9) verilen bir havaalanında, verilen tarihden sonra, 5'den az uçuş yapmış şirketlerin isimleri
 SELECT *
 FROM (
@@ -84,7 +82,7 @@ FROM (
 		AND LEG_INSTANCE.Departure_airport_code = AIRPORT.Airport_code
 		AND FLIGHT.Flight_number = LEG_INSTANCE.Flight_no
 		AND LEG_INSTANCE.Date > CAST('2015.01.01' AS DATE)
-		AND LEG_INSTANCE.Arrival_time IS NOT NULL --yapMIŞ dediği için
+		--AND LEG_INSTANCE.Arrival_time IS NOT NULL
 		GROUP BY FLIGHT.Airline
 	) RESULT
 WHERE RESULT.Flight_count < 5;
@@ -123,7 +121,7 @@ WHERE (
 )
 AND F.Flight_number = LI.Flight_no
 GROUP BY F.Airline
-ORDER BY COUNT(*) DESC
+ORDER BY COUNT(*) DESC;
 
 
 
@@ -170,7 +168,7 @@ WITH IJ_FLIGHTS(Flight_no) AS
 	WHERE fl.Departure_airport_code = a1.Airport_code
 	AND fl.Arrival_airport_code = a2.Airport_code
 	AND a1.City = 'İstanbul'
-	AND a2.State = 'Japan'
+	AND a2.Country = 'Japan'
 )
 SELECT SEAT_RESERVATION.Customer_name, SEAT_RESERVATION.Customer_phone
 FROM SEAT_RESERVATION
@@ -212,7 +210,7 @@ WHERE NOT EXISTS(
 		FL.Arrival_airport_code = A.Airport_code
 		OR FL.Departure_airport_code = A.Airport_code
 	)
-)
+);
 
 --  Kaza yapmis ucuslarin listesi
 SELECT *
@@ -262,5 +260,3 @@ FROM DEP_COUNTS as DC
 FULL OUTER JOIN ARR_COUNTS as AC
 ON AC.Airport_code = DC.Airport_code
 ORDER BY IsNull(DC.Departure_count,0) + IsNull(AC.Arrival_count,0) DESC;
-
-
