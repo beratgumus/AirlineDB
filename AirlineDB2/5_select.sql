@@ -26,7 +26,6 @@ ORDER BY COUNT(*) desc;
 
 
 -- Ucak ureten firmalarin, ucaklarinin yaptigi toplam kaza sayisi
-
 WITH ACCIDENT(Airplane_id) 
 AS
 (SELECT Airplane_id
@@ -103,7 +102,7 @@ WHERE AIRPORT.City = 'İzmir'
 AND LEG_INSTANCE.Departure_airport_code = AIRPORT.Airport_code
 AND LEG_INSTANCE.Flight_no = FLIGHT.Flight_number
 AND FLIGHT.Company_id = COMPANY.Id
-GROUP BY COMPANY.Name
+GROUP BY COMPANY.Name;
 
 -- Kalkış ve iniş havaalanı verilen, henüz gerçekleşmemiş uçuşların
 -- tarihi, kalkış saati, iniş saati ve boş koltuk sayıları
@@ -116,7 +115,7 @@ AND FLIGHT_LEG.Departure_airport_code = DEP.Airport_code
 AND FLIGHT_LEG.Arrival_airport_code = ARR.Airport_code
 AND LEG_INSTANCE.Flight_no = FLIGHT_LEG.Flight_no
 AND LEG_INSTANCE.Leg_no = FLIGHT_LEG.Leg_number
-AND DATE > CAST(GETDATE() as DATE)
+AND DATE > CAST(GETDATE() as DATE);
 
 
 -- Yılın ilk uçuşunu gerçekleştiren havaalanı şirketi ve uçuş bilgileri
@@ -125,7 +124,7 @@ AND DATE > CAST(GETDATE() as DATE)
 	WHERE DATEPART(YY, LI.Date) = DATEPART(YY, GETDATE())
 	AND F.Flight_number = LI.Flight_no
 	AND C.Id = F.Company_id
-	ORDER BY LI.Date ASC
+	ORDER BY LI.Date ASC;
 
 	
 -- Yılın ilk ve son uçuşlarını gerçekleştiren havayolu şirketleri ve uçuş bilgileri
@@ -167,7 +166,7 @@ WHERE (	LI.Departure_airport_code = SELECTED_AIRPORT.Code
 AND F.Flight_number = LI.Flight_no
 AND F.Company_id = C.Id
 GROUP BY C.Name
-ORDER BY COUNT(*) DESC
+ORDER BY COUNT(*) DESC;
 
 -- ortalama 200 tl'den daha pahallıya uçuş yapan yolcuların bilgileri,
 --  yaptığı uçuş sayısı, ve ortalama bilet fiyatı
@@ -178,7 +177,7 @@ AND SR.Fare_code = F.Fare_code
 AND SR.Flight_no = F.Flight_no
 GROUP BY C.Id, C.Name
 HAVING AVG(F.Amount) > 200
-ORDER BY C.Id
+ORDER BY C.Id;
 
 -- Havayolu şirketlerinin kullanımlarının ülkelere göre dağılımları
 SELECT CO.Name, CU.Country, COUNT(*) as Customer_count
@@ -187,4 +186,4 @@ WHERE SR.Customer_id = CU.Id
 AND SR.Flight_no = F.Flight_number
 AND F.Company_id = CO.Id
 GROUP BY CO.Name, CU.Country
-ORDER BY CO.Name
+ORDER BY CO.Name;
