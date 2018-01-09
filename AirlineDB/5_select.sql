@@ -1,5 +1,25 @@
 ﻿USE Airline1
 GO
+
+-- Aktarmalı veya aktarmasız herbir uçuşun bilgileri, 
+-- iniş ve kalkış havaalanı
+SELECT F.*, FL1.Departure_airport_code, FL2.Arrival_airport_code
+FROM FLIGHT as F, FLIGHT_LEG as FL1, FLIGHT_LEG as FL2
+WHERE FL1.Flight_no = F.Flight_number
+AND FL1.Flight_no = FL2.Flight_no
+AND FL1.Leg_number = (
+	SELECT MIN(Leg_number)
+	FROM FLIGHT_LEG
+	WHERE Flight_no = F.Flight_number
+	GROUP BY Flight_no
+)
+AND FL2.Leg_number = (
+	SELECT MAX(Leg_number)
+	FROM FLIGHT_LEG
+	WHERE Flight_no = F.Flight_number
+	GROUP BY Flight_no
+)
+
 -- 1. Havayolu şirketlerinin,yarım saatten fazla rotar yapan ucuslarında uçan yolcularının listesi
 SELECT FL.Flight_no, LI.Leg_no, LI.[Date],  Scheduled_departure_time, CAST(LI.Departure_time as TIME(0)) as Departure_time,Airline,Customer_name
 FROM FLIGHT_LEG as FL, LEG_INSTANCE as LI,FLIGHT,SEAT_RESERVATION as SR
