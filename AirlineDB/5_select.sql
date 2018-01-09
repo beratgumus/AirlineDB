@@ -158,7 +158,7 @@ AND LI.Airplane_id NOT IN (
 	FROM  AIRPLANE as A, CAN_LAND as CL
 	WHERE A.Airplane_type = CL.Airplane_type_name
 	AND CL.Airport_code = LI.Arrival_airport_code
-)
+);
 
 -- 24.istanbul-japonya arası aktarmasız uçuşlardaki aynı telefon numarasına sahip müşterilerin adı
 WITH IJ_FLIGHTS(Flight_no) AS

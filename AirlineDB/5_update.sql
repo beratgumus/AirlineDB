@@ -1,6 +1,6 @@
 use Airline1
 GO
--- Flight no 1 olan ucuslardaki bileet iyatlarini %20 arttir
+-- Flight no 1 olan ucuslardaki bileet fiyatlarini %20 arttir
 Update FARE
 SET	Amount=Amount*1.20
 WHERE	Flight_no=1
